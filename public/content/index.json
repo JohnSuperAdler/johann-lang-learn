@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "languages": [
+    { "lang": "ko", "name": "韓語", "ttsLocale": "ko-KR", "course": "ko/course.json" },
+    { "lang": "pt", "name": "葡萄牙語（巴西）", "ttsLocale": "pt-BR", "course": "pt/course.json" }
+  ]
+}

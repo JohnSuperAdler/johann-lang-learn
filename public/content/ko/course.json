@@ -1,0 +1,64 @@
+{
+  "lang": "ko",
+  "name": "韓語",
+  "ttsLocale": "ko-KR",
+  "stages": [
+    {
+      "id": "K-A", "name": "字母", "kind": "alphabet",
+      "units": [
+        { "id": "K-A1", "name": "基本母音", "description": "ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ ㅑ ㅕ ㅛ ㅠ", "requires": [], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },
+        { "id": "K-A2", "name": "基本子音", "description": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ", "requires": ["K-A1"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },
+        { "id": "K-A3", "name": "複合母音", "description": "ㅐ ㅔ ㅒ ㅖ ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ", "requires": ["K-A2"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },
+        { "id": "K-A4", "name": "雙子音", "description": "ㄲ ㄸ ㅃ ㅆ ㅉ", "requires": ["K-A2"], "lessons": [],
+          "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },
+        { "id": "K-A5", "name": "音節結構與終聲", "description": "子母音拼合、受最（받침）七個代表音", "requires": ["K-A3", "K-A4"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "compose"] } },
+        { "id": "K-A6", "name": "連音與基本音變", "description": "連音、鼻音化、激音化、硬化", "requires": ["K-A5"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation"] } }
+      ]
+    },
+    {
+      "id": "K-B", "name": "單字", "kind": "vocab",
+      "units": [
+        { "id": "K-B1", "name": "數字", "description": "漢字數字與固有數字、量詞", "requires": ["K-A5"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
+        { "id": "K-B2", "name": "問候與自我介紹", "description": "問候、國籍、職業、道謝道歉", "requires": ["K-A5"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
+        { "id": "K-B3", "name": "時間與日期", "description": "星期、月、時鐘讀法", "requires": ["K-B1"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
+        { "id": "K-B4", "name": "飲食與購物", "description": "食物、點餐、價格", "requires": ["K-B1"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
+        { "id": "K-B5", "name": "身體與動作", "description": "身體部位、踢、蹲、轉、跳等運動動詞", "requires": ["K-B2"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
+        { "id": "K-B6", "name": "場所與交通", "description": "建築、方向、交通工具", "requires": ["K-B2"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
+        { "id": "K-B7", "name": "高頻動詞與形容詞", "description": "動詞 50、形容詞 30", "requires": ["K-B5"], "lessons": [],
+          "exam": { "questionCount": 25, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } }
+      ]
+    },
+    {
+      "id": "K-C", "name": "文法", "kind": "grammar",
+      "units": [
+        { "id": "K-C1", "name": "句子結構", "description": "SOV 語序、이에요/예요、이/가 아니에요", "requires": ["K-B2"], "lessons": [],
+          "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
+        { "id": "K-C2", "name": "基本助詞", "description": "은/는、이/가、을/를、에、에서、도", "requires": ["K-C1"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
+        { "id": "K-C3", "name": "動詞現在式", "description": "-아요/어요/해요 變化規則", "requires": ["K-C2"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice", "spell"] } },
+        { "id": "K-C4", "name": "否定", "description": "안、-지 않아요、못", "requires": ["K-C3"], "lessons": [],
+          "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
+        { "id": "K-C5", "name": "過去式", "description": "-았/었/했어요", "requires": ["K-C3"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice", "spell"] } },
+        { "id": "K-C6", "name": "未來與意圖", "description": "-(으)ㄹ 거예요、-(으)ㄹ게요", "requires": ["K-C5"], "lessons": [],
+          "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
+        { "id": "K-C7", "name": "連接詞尾", "description": "-고、-지만、-아서/어서、-(으)니까", "requires": ["K-C5"], "lessons": [],
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
+        { "id": "K-C8", "name": "能力與願望", "description": "-(으)ㄹ 수 있어요/없어요、-고 싶어요", "requires": ["K-C6"], "lessons": [],
+          "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } }
+      ]
+    }
+  ]
+}
