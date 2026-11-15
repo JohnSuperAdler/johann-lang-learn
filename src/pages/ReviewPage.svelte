@@ -19,9 +19,13 @@
   }
 
   let result = $state<SessionResult | null>(null);
+  let reload = $state(0); // 「繼續複習」時 +1，重新準備隊列
+
+  // 狀態重設放在 effect，不能放在模板或 derived 裡（state_unsafe_mutation）。
+  $effect(() => { void lessonId; void reload; result = null; });
+  const promise = $derived.by(() => { void reload; return prepare(lessonId); });
 
   async function prepare(id: string | undefined): Promise<Prepared> {
-    result = null;
     const today = todayKey();
     if (!id) {
       const all = await getDueCards(today);
@@ -79,8 +83,8 @@
   }
 </script>
 
-{#key lessonId ?? 'daily'}
-  {#await prepare(lessonId)}
+{#key `${lessonId ?? 'daily'}/${reload}`}
+  {#await promise}
     <Loading />
   {:then p}
     {#if result}
@@ -102,7 +106,7 @@
         {/if}
         {#if p.nextHref}<a class="btn primary big" href={p.nextHref}>{p.nextLabel}</a>{/if}
         {#if p.mode === 'daily' && (p.remainingDue ?? 0) > 0}
-          <a class="btn primary big" href="#/review" onclick={() => (result = null)}>繼續複習</a>
+          <button class="btn primary big" onclick={() => (reload += 1)}>繼續複習</button>
         {/if}
         <a class="btn big" href={p.backHref}>{p.mode === 'daily' ? '回首頁' : '回到單元'}</a>
       </section>
