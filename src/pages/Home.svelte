@@ -36,7 +36,7 @@
       </div>
       <div class="muted" style="text-align: right">
         <div>連續天數</div>
-        <div style="font-size: 1.5rem; font-weight: 700; line-height: 1.1">0</div>
+        <div style="font-size: 1.5rem; font-weight: 700; line-height: 1.1">{rows[0]?.progress.streak ?? 0}</div>
       </div>
     </div>
     <a class="btn primary big" href="#/review" class:disabled={due === 0} aria-disabled={due === 0}>
@@ -52,7 +52,7 @@
         unitsPassed={progress.unitsPassed} unitsTotal={progress.unitsTotal}
         due={progress.due}
         nextHref={progress.nextUnit ? `#/${course.lang}/unit/${progress.nextUnit.id}` : `#/${course.lang}`}
-        nextLabel={progress.nextUnit ? `下一課：${progress.nextUnit.id} ${progress.nextUnit.name}` : '查看單元'}
+        nextLabel={progress.nextUnit ? `${progress.inProgressUnitIds.has(progress.nextUnit.id) ? '繼續' : '下一單元'}：${progress.nextUnit.id} ${progress.nextUnit.name}` : '查看單元'}
       />
     {/each}
   </div>

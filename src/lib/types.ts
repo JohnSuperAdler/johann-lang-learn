@@ -54,13 +54,20 @@ export interface CardRecord {
   reps: number;
   lapses: number;
   lastReviewed: string | null; // ISO 時間
+  priority?: number;           // 每日隊列優先權：考試錯題設 1（S4），複習後歸 0
   dirty?: boolean;             // 待同步（S11 使用）
 }
 export interface ExamRecord {
   id: string; unitId: string; lang: LangCode; date: string; score: number; total: number;
   passed: boolean; wrongItemIds: string[]; durationSec: number;
 }
-export interface DayStat { date: string; reviewed: number; correct: number; newLearned: number; }
+export interface DayStat {
+  date: string; reviewed: number; correct: number; newLearned: number;
+  cleared?: boolean; // 當日曾把到期隊列清空（算完成一天，F5.5）
+}
+
+/** 一次閱卡（課後／每日／練習）的結果 */
+export interface SessionResult { graded: number; correct: number; forgotten: number; cards: number; }
 
 export interface Settings {
   voice: Partial<Record<LangCode, string>>;

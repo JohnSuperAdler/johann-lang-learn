@@ -30,7 +30,7 @@
     {#each course.stages.filter((s) => s.kind === activeStage) as stage (stage.id)}
       <div class="stack">
         {#each stage.units as unit (unit.id)}
-          {@const status = unitStatus(unit, progress.passedUnitIds)}
+          {@const status = unitStatus(unit, progress.passedUnitIds, progress.inProgressUnitIds)}
           <a class="card unit" class:locked={status === 'locked'} href={`#/${lang}/unit/${unit.id}`}>
             <div class="row" style="justify-content: space-between">
               <strong>{unit.id} {unit.name}</strong>
@@ -58,4 +58,5 @@
   .status { font-size: 0.8rem; padding: 2px 8px; border-radius: 999px; background: var(--border); white-space: nowrap; }
   .status.passed { background: #bbf7d0; color: #14532d; }
   .status.available { background: var(--primary-soft); }
+  .status.inprogress { background: #fef3c7; color: #78350f; }
 </style>
