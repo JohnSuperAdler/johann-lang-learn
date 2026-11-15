@@ -13,15 +13,15 @@
             { "id": "K-A1-L2", "name": "y 母音 ㅑ ㅕ ㅛ ㅠ",
               "itemIds": ["ko.letter.ya", "ko.letter.yeo", "ko.letter.yo", "ko.letter.yu"] }
           ],
-          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose", "match"] } },
         { "id": "K-A2", "name": "基本子音", "description": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ", "requires": ["K-A1"], "lessons": [],
-          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose", "match"] } },
         { "id": "K-A3", "name": "複合母音", "description": "ㅐ ㅔ ㅒ ㅖ ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ", "requires": ["K-A2"], "lessons": [],
-          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose", "match"] } },
         { "id": "K-A4", "name": "雙子音", "description": "ㄲ ㄸ ㅃ ㅆ ㅉ", "requires": ["K-A2"], "lessons": [],
-          "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },
+          "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose", "match"] } },
         { "id": "K-A5", "name": "音節結構與終聲", "description": "子母音拼合、受最（받침）七個代表音", "requires": ["K-A3", "K-A4"], "lessons": [],
-          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "compose"] } },
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "compose", "match"] } },
         { "id": "K-A6", "name": "連音與基本音變", "description": "連音、鼻音化、激音化、硬化", "requires": ["K-A5"], "lessons": [],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation"] } }
       ]

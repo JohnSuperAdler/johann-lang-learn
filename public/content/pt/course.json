@@ -7,7 +7,7 @@
       "id": "P-A", "name": "字母", "kind": "alphabet",
       "units": [
         { "id": "P-A1", "name": "字母表", "description": "26 個字母的名稱與基本音", "requires": [], "lessons": [],
-          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice"] } },
+          "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "match"] } },
         { "id": "P-A2", "name": "母音與鼻音", "description": "開口／閉口母音、ã õ、-ão -ém -am 等鼻音組合", "requires": ["P-A1"], "lessons": [],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation"] } },
         { "id": "P-A3", "name": "子音特色", "description": "lh、nh、r/rr、ç、字尾 -l、d/t 顎化", "requires": ["P-A1"], "lessons": [],
