@@ -19,7 +19,12 @@ export interface Stage { id: string; name: string; kind: StageKind; units: Unit[
 export interface Course { lang: LangCode; name: string; ttsLocale: string; stages: Stage[]; }
 
 export interface Example { text: string; meaning: string; audio?: string | null; }
-interface ItemBase { id: string; type: ItemType; audio?: string | null; tags?: string[]; }
+interface ItemBase {
+  id: string; type: ItemType;
+  audio?: string | null;   // 預錄音檔，相對於 content/<lang>/，例如 audio/letter-a.mp3
+  tts?: string;            // 語音合成要唸的字串；省略時唸 text / title（字母單獨唸不清楚時用音節，如 ㅏ → 아）
+  tags?: string[];
+}
 export interface LetterItem extends ItemBase {
   type: 'letter'; text: string; roman: string; name: string; note?: string; examples?: Example[];
 }

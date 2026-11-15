@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ko.letter.a", "type": "letter", "text": "ㅏ", "roman": "a", "name": "母音 ㅏ", "tts": "아",
+    "note": "筆順：先寫一筆長直豎，再在右側中間加一短橫（向右）。\n口型：嘴巴自然張大，舌頭放平，像中文「阿」。\n記法：短橫朝右＝「a」。",
+    "examples": [
+      { "text": "아이", "meaning": "小孩" },
+      { "text": "아우", "meaning": "弟弟／妹妹" }
+    ],
+    "tags": ["vowel", "basic"]
+  },
+  {
+    "id": "ko.letter.eo", "type": "letter", "text": "ㅓ", "roman": "eo", "name": "母音 ㅓ", "tts": "어",
+    "note": "筆順：先寫左側短橫（向右），再寫一筆長直豎。\n口型：嘴張開但比 ㅏ 略收，舌頭後縮，介於中文「喔」與「餓」之間，不圓唇。\n記法：短橫朝左＝「eo」，和 ㅏ 左右相反。",
+    "examples": [
+      { "text": "어이", "meaning": "喂（呼喚）" },
+      { "text": "여우", "meaning": "狐狸（用到 ㅕ，先聽聽看）" }
+    ],
+    "tags": ["vowel", "basic"]
+  },
+  {
+    "id": "ko.letter.o", "type": "letter", "text": "ㅗ", "roman": "o", "name": "母音 ㅗ", "tts": "오",
+    "note": "筆順：先寫上方短豎，再寫底下一筆長橫。\n口型：嘴唇收圓並向前突出，像中文「喔」（ㄛ）。\n記法：短豎朝上＝「o」。",
+    "examples": [
+      { "text": "오이", "meaning": "小黃瓜" },
+      { "text": "오", "meaning": "五（漢字數字）" }
+    ],
+    "tags": ["vowel", "basic"]
+  },
+  {
+    "id": "ko.letter.u", "type": "letter", "text": "ㅜ", "roman": "u", "name": "母音 ㅜ", "tts": "우",
+    "note": "筆順：先寫一筆長橫，再寫下方短豎。\n口型：嘴唇縮小成圓形向前突，像中文「烏」。\n記法：短豎朝下＝「u」，和 ㅗ 上下相反。",
+    "examples": [
+      { "text": "우유", "meaning": "牛奶" },
+      { "text": "우아", "meaning": "優雅" }
+    ],
+    "tags": ["vowel", "basic"]
+  },
+  {
+    "id": "ko.letter.eu", "type": "letter", "text": "ㅡ", "roman": "eu", "name": "母音 ㅡ", "tts": "으",
+    "note": "筆順：一筆長橫，由左至右。\n口型：嘴唇向兩側拉平、牙齒接近閉合，像中文「餓」但更扁、更短，絕對不圓唇。\n記法：一條橫線＝「eu」，是韓語特有的扁唇音。",
+    "examples": [
+      { "text": "으으", "meaning": "（呻吟聲）唔…" }
+    ],
+    "tags": ["vowel", "basic"]
+  },
+  {
+    "id": "ko.letter.i", "type": "letter", "text": "ㅣ", "roman": "i", "name": "母音 ㅣ", "tts": "이",
+    "note": "筆順：一筆長直豎，由上至下。\n口型：嘴角向兩側拉開，像中文「衣」。\n記法：一條直線＝「i」。",
+    "examples": [
+      { "text": "이", "meaning": "二／牙齒／這" },
+      { "text": "아이", "meaning": "小孩" }
+    ],
+    "tags": ["vowel", "basic"]
+  },
+  {
+    "id": "ko.letter.ya", "type": "letter", "text": "ㅑ", "roman": "ya", "name": "母音 ㅑ", "tts": "야",
+    "note": "筆順：先寫長直豎，再在右側加兩短橫（由上而下）。\n發音：y＋ㅏ，像中文「呀」。\n記法：兩橫＝加了 y 音；ㅏ→ㅑ、ㅓ→ㅕ、ㅗ→ㅛ、ㅜ→ㅠ 都是同樣規則。",
+    "examples": [
+      { "text": "야", "meaning": "喂！（叫人）" },
+      { "text": "이야", "meaning": "（語氣）是…啊" }
+    ],
+    "tags": ["vowel", "basic", "y-vowel"]
+  },
+  {
+    "id": "ko.letter.yeo", "type": "letter", "text": "ㅕ", "roman": "yeo", "name": "母音 ㅕ", "tts": "여",
+    "note": "筆順：先寫左側兩短橫（由上而下），再寫長直豎。\n發音：y＋ㅓ，接近中文「唷」但嘴不圓。\n記法：兩橫朝左＝「yeo」。",
+    "examples": [
+      { "text": "여우", "meaning": "狐狸" },
+      { "text": "여유", "meaning": "餘裕、從容" }
+    ],
+    "tags": ["vowel", "basic", "y-vowel"]
+  },
+  {
+    "id": "ko.letter.yo", "type": "letter", "text": "ㅛ", "roman": "yo", "name": "母音 ㅛ", "tts": "요",
+    "note": "筆順：先寫上方兩短豎（由左而右），再寫底下長橫。\n發音：y＋ㅗ，像中文「唷」，圓唇。\n記法：兩豎朝上＝「yo」。",
+    "examples": [
+      { "text": "요요", "meaning": "溜溜球" },
+      { "text": "우요", "meaning": "（練習用）u-yo" }
+    ],
+    "tags": ["vowel", "basic", "y-vowel"]
+  },
+  {
+    "id": "ko.letter.yu", "type": "letter", "text": "ㅠ", "roman": "yu", "name": "母音 ㅠ", "tts": "유",
+    "note": "筆順：先寫長橫，再寫下方兩短豎（由左而右）。\n發音：y＋ㅜ，像英文「you」。\n記法：兩豎朝下＝「yu」。",
+    "examples": [
+      { "text": "우유", "meaning": "牛奶" },
+      { "text": "유아", "meaning": "幼兒" },
+      { "text": "이유", "meaning": "理由" }
+    ],
+    "tags": ["vowel", "basic", "y-vowel"]
+  }
+]

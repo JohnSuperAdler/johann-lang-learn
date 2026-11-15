@@ -6,7 +6,13 @@
     {
       "id": "K-A", "name": "字母", "kind": "alphabet",
       "units": [
-        { "id": "K-A1", "name": "基本母音", "description": "ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ ㅑ ㅕ ㅛ ㅠ", "requires": [], "lessons": [],
+        { "id": "K-A1", "name": "基本母音", "description": "ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ ㅑ ㅕ ㅛ ㅠ", "requires": [],
+          "lessons": [
+            { "id": "K-A1-L1", "name": "單母音 ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ",
+              "itemIds": ["ko.letter.a", "ko.letter.eo", "ko.letter.o", "ko.letter.u", "ko.letter.eu", "ko.letter.i"] },
+            { "id": "K-A1-L2", "name": "y 母音 ㅑ ㅕ ㅛ ㅠ",
+              "itemIds": ["ko.letter.ya", "ko.letter.yeo", "ko.letter.yo", "ko.letter.yu"] }
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },
         { "id": "K-A2", "name": "基本子音", "description": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ", "requires": ["K-A1"], "lessons": [],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose"] } },

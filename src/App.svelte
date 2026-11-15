@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { router, startRouter } from './lib/router.svelte';
+  import { initSpeech } from './lib/speech.svelte';
   import Shell from './components/Shell.svelte';
   import Home from './pages/Home.svelte';
   import UnitList from './pages/UnitList.svelte';
@@ -13,7 +14,10 @@
   import SettingsPage from './pages/SettingsPage.svelte';
   import NotFound from './pages/NotFound.svelte';
 
-  onMount(() => startRouter());
+  onMount(() => {
+    initSpeech();
+    return startRouter();
+  });
 
   const route = $derived(router.route);
 </script>

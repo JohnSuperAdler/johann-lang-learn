@@ -1,9 +1,21 @@
 <script lang="ts">
   import { clearAll } from '../lib/db';
   import { resetSettings, saveSettings, settings } from '../lib/settings.svelte';
+  import { platformHint, refreshVoices, speak, speechStatus } from '../lib/speech.svelte';
+  import type { LangCode } from '../lib/types';
 
   let resetArmed = $state(false);
   let message = $state('');
+
+  const SAMPLE: Record<LangCode, string> = { ko: '안녕하세요. 만나서 반갑습니다.', pt: 'Olá! Vamos jogar capoeira na roda.' };
+  const LANG_NAME: Record<LangCode, string> = { ko: '韓語', pt: '葡萄牙語' };
+  let testResult = $state<Partial<Record<LangCode, string>>>({});
+
+  async function testVoice(lang: LangCode) {
+    testResult[lang] = '播放中…';
+    const src = await speak(SAMPLE[lang], { lang });
+    testResult[lang] = src === 'none' ? '沒有可用語音' : '播放完成';
+  }
 
   async function resetProgress() {
     if (!resetArmed) { resetArmed = true; return; }
@@ -26,7 +38,31 @@
       <span>卡片顯示時自動發音</span>
       <input type="checkbox" bind:checked={settings.autoplay} onchange={saveSettings} />
     </label>
-    <p class="muted" style="margin: 0">聲音選擇在 S2 加入（需裝置語音清單）。</p>
+    {#if !speechStatus.supported}
+      <p class="warn">此瀏覽器不支援語音合成（Web Speech API）。</p>
+    {:else}
+      {#each ['ko', 'pt'] as const as lang (lang)}
+        {@const voices = speechStatus.voices[lang]}
+        <div class="stack" style="gap: 6px">
+          <div class="row" style="justify-content: space-between">
+            <span>{LANG_NAME[lang]}聲音 <span class="muted">({voices.length} 個)</span></span>
+            <button class="btn" onclick={() => testVoice(lang)} disabled={voices.length === 0}>試聽</button>
+          </div>
+          {#if voices.length === 0}
+            <p class="warn" style="margin: 0">此裝置沒有{LANG_NAME[lang]}語音。{platformHint()}
+              <button class="btn" style="margin-top: 8px" onclick={refreshVoices}>重新偵測</button></p>
+          {:else}
+            <select bind:value={settings.voice[lang]} onchange={saveSettings} style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: inherit; font: inherit">
+              <option value={undefined}>自動（{voices[0].name}）</option>
+              {#each voices as v (v.voiceURI)}
+                <option value={v.voiceURI}>{v.name}（{v.lang}{v.local ? '' : '・線上'}）</option>
+              {/each}
+            </select>
+          {/if}
+          {#if testResult[lang]}<span class="muted" style="font-size: 0.9rem">{testResult[lang]}</span>{/if}
+        </div>
+      {/each}
+    {/if}
   </section>
 
   <section class="card stack">
@@ -60,3 +96,7 @@
 
   <p class="muted" style="text-align: center"><a href="#/stats">統計</a>・<a href="#/search">搜尋</a></p>
 </div>
+
+<style>
+  .warn { background: color-mix(in srgb, var(--danger) 10%, transparent); border: 1px solid var(--danger); border-radius: 10px; padding: 10px 12px; }
+</style>
