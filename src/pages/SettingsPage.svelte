@@ -1,6 +1,7 @@
 <script lang="ts">
   import { backupFileName, exportData, importData, parseBackup, type Backup } from '../lib/backup';
   import { clearAll } from '../lib/db';
+  import { promptInstall, pwa } from '../lib/pwa.svelte';
   import { resetSettings, saveSettings, settings } from '../lib/settings.svelte';
   import { platformHint, refreshVoices, speak, speechStatus } from '../lib/speech.svelte';
   import type { LangCode } from '../lib/types';
@@ -115,6 +116,23 @@
       <span>依序解鎖單元<br /><span class="muted" style="font-size: 0.85rem">開啟後，必修單元要先通過前置單元的考試才能進入；選修單元不受限。</span></span>
       <input type="checkbox" bind:checked={settings.enforceLocks} onchange={saveSettings} />
     </label>
+  </section>
+
+  <section class="card stack">
+    <h3>安裝與離線</h3>
+    {#if !pwa.supported || !pwa.secure}
+      <p class="muted" style="margin: 0">目前的開啟方式無法離線使用或安裝。需要透過 https 網址（部署後）或在本機用 localhost 開啟。</p>
+    {:else}
+      <p style="margin: 0">{pwa.offlineReady ? '✓ 已可離線使用：程式與全部教材已存在這台裝置。' : '離線資料準備中，稍後重新整理本頁即可確認。'}</p>
+      {#if pwa.installed}
+        <p class="muted" style="margin: 0">已安裝為應用程式。</p>
+      {:else if pwa.installable}
+        <button class="btn primary" onclick={promptInstall}>安裝到這台裝置</button>
+      {:else}
+        <p class="muted" style="margin: 0">安裝方式：Android Chrome 選單 →「加到主畫面」；iPhone Safari 分享鍵 →「加入主畫面」；電腦 Chrome／Edge 網址列右側的安裝圖示。</p>
+      {/if}
+    {/if}
+    <p class="muted" style="margin: 0; font-size: 0.85rem">語音合成由裝置提供，離線時是否能發音取決於裝置是否已下載該語言的語音。</p>
   </section>
 
   <section class="card stack">
