@@ -36,7 +36,8 @@
     message = `已匯出 ${data.cards.length} 張卡片、${data.exams.length} 筆考試紀錄、${data.days.length} 天的統計。`;
   }
 
-  let pending = $state<Backup | null>(null);
+  // 用 $state.raw：一般的 $state 會把備份內容包成 Proxy，IndexedDB 無法儲存 Proxy（could not be cloned）。
+  let pending = $state.raw<Backup | null>(null);
   let importError = $state('');
   async function pickFile(e: Event) {
     const input = e.currentTarget as HTMLInputElement;

@@ -67,7 +67,9 @@ export function parseBackup(text: string): Backup {
 }
 
 /** 以備份內容「取代」目前全部學習紀錄與設定。卡片標成待同步。 */
-export async function importData(backup: Backup): Promise<void> {
+export async function importData(input: Backup): Promise<void> {
+  // 先轉成純資料：呼叫端若傳入 Svelte 響應式物件（Proxy），IndexedDB 會拒絕儲存。
+  const backup = JSON.parse(JSON.stringify(input)) as Backup;
   await replaceAll({
     cards: backup.cards.map((c) => ({ ...c, dirty: true })),
     exams: backup.exams, days: backup.days,

@@ -2,6 +2,7 @@
 // 頁面流程測試：以假的 IndexedDB 與 fetch 掛載真正的頁面，走完 課後複習 → 考試解鎖 → 考試 → 錯題入隊。
 import 'fake-indexeddb/auto';
 import { readFileSync } from 'node:fs';
+import { serialize } from 'node:v8';
 import { resolve } from 'node:path';
 import { flushSync, mount, unmount } from 'svelte';
 import { afterEach, beforeAll, describe, expect, it } from 'vitest';
@@ -16,10 +17,17 @@ import StatsPage from '../src/pages/StatsPage.svelte';
 import SearchPage from '../src/pages/SearchPage.svelte';
 import SettingsPage from '../src/pages/SettingsPage.svelte';
 import { exportData, importData, parseBackup } from '../src/lib/backup';
-import { clearAll, getAllDays } from '../src/lib/db';
+import { clearAll, getAllDays, putCards, putDay, putExam } from '../src/lib/db';
 import { settings } from '../src/lib/settings.svelte';
 
 beforeAll(() => {
+  // fake-indexeddb 比真實瀏覽器寬鬆，會接受 Proxy。用 V8 的序列化（與 Chrome 相同）先檢查一次，
+  // 讓「could not be cloned」這類錯誤在測試中也會發生。
+  const origPut = IDBObjectStore.prototype.put;
+  IDBObjectStore.prototype.put = function (value: unknown, key?: IDBValidKey) {
+    serialize(value);
+    return origPut.call(this, value, key);
+  };
   globalThis.fetch = (async (url: string) => {
     const rel = String(url).replace(/^.*content\//, '');
     try {
@@ -244,5 +252,26 @@ describe('頁面流程', () => {
     expect(() => parseBackup('not json')).toThrow('JSON');
     expect(() => parseBackup(JSON.stringify({ ...before, version: 99 }))).toThrow('請先更新');
     expect(() => parseBackup(JSON.stringify({ ...before, cards: [{ cardId: 'x' }] }))).toThrow('第 1 張卡片');
+  });
+
+  it('設定頁畫面操作：選檔 → 確認匯入 → 成功（使用者回報 could not be cloned）', async () => {
+    await putCards([{ cardId: 'ko.letter.a#recognize', itemId: 'ko.letter.a', lang: 'ko', direction: 'recognize', state: 'review', interval: 3, ease: 2.5, due: '2026-11-20', reps: 2, lapses: 0, lastReviewed: null }]);
+    await putExam({ id: 'K-A1@test', unitId: 'K-A1', lang: 'ko', date: '2026-11-16', score: 85, total: 20, passed: true, wrongItemIds: ['ko.letter.eo'], durationSec: 90 });
+    await putDay({ date: '2026-11-16', reviewed: 12, correct: 10, newLearned: 6 });
+    const before = await exportData();
+    expect(before.cards.length).toBeGreaterThan(0);
+    app = mount(SettingsPage, { target: document.body, props: {} });
+    await tick();
+    const input = document.querySelector('input[type=file]') as HTMLInputElement;
+    const file = new File([JSON.stringify(before)], 'backup.json', { type: 'application/json' });
+    Object.defineProperty(input, 'files', { value: [file], configurable: true });
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    await tick(8);
+    expect(text()).toContain('匯入會取代');
+    await click(btn('確認匯入並取代'));
+    await tick(8);
+    expect(text()).not.toContain('匯入失敗');
+    expect(text()).toContain('匯入完成');
+    expect(await getAllCards()).toHaveLength(before.cards.length);
   });
 });
