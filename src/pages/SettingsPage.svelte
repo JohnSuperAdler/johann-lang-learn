@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { backupFileName, exportData, importData, parseBackup, type Backup } from '../lib/backup';
   import { clearAll } from '../lib/db';
   import { resetSettings, saveSettings, settings } from '../lib/settings.svelte';
   import { platformHint, refreshVoices, speak, speechStatus } from '../lib/speech.svelte';
@@ -22,6 +23,37 @@
     await clearAll();
     resetArmed = false;
     message = '學習進度已清空。';
+  }
+
+  async function doExport() {
+    const data = await exportData();
+    const url = URL.createObjectURL(new Blob([JSON.stringify(data)], { type: 'application/json' }));
+    const a = document.createElement('a');
+    a.href = url; a.download = backupFileName();
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    message = `已匯出 ${data.cards.length} 張卡片、${data.exams.length} 筆考試紀錄、${data.days.length} 天的統計。`;
+  }
+
+  let pending = $state<Backup | null>(null);
+  let importError = $state('');
+  async function pickFile(e: Event) {
+    const input = e.currentTarget as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = '';
+    pending = null; importError = ''; message = '';
+    if (!file) return;
+    try { pending = parseBackup(await file.text()); }
+    catch (err) { importError = err instanceof Error ? err.message : String(err); }
+  }
+  async function confirmImport() {
+    if (!pending) return;
+    const b = pending;
+    try {
+      await importData(b);
+      message = `匯入完成：${b.cards.length} 張卡片、${b.exams.length} 筆考試紀錄、${b.days.length} 天的統計。`;
+    } catch (err) { importError = `匯入失敗：${err instanceof Error ? err.message : String(err)}`; }
+    pending = null;
   }
 </script>
 
@@ -79,11 +111,30 @@
       <span>換日時間（時）</span>
       <input type="number" min="0" max="12" bind:value={settings.dayCutoffHour} onchange={saveSettings} style="width: 90px" />
     </label>
+    <label class="row" style="justify-content: space-between">
+      <span>依序解鎖單元<br /><span class="muted" style="font-size: 0.85rem">開啟後，必修單元要先通過前置單元的考試才能進入；選修單元不受限。</span></span>
+      <input type="checkbox" bind:checked={settings.enforceLocks} onchange={saveSettings} />
+    </label>
   </section>
 
   <section class="card stack">
     <h3>資料</h3>
-    <p class="muted" style="margin: 0">匯出／匯入在 S10 加入；雲端同步在 S11 加入。</p>
+    <p class="muted" style="margin: 0">學習紀錄只存在這台裝置的瀏覽器裡。匯出成檔案可以備份，或搬到另一台裝置匯入。雲端同步在 S11 加入。</p>
+    <div class="row" style="flex-wrap: wrap">
+      <button class="btn primary" onclick={doExport}>匯出備份檔</button>
+      <label class="btn">匯入備份檔<input type="file" accept="application/json,.json" onchange={pickFile} hidden /></label>
+    </div>
+    {#if importError}<p class="warn" style="margin: 0">{importError}</p>{/if}
+    {#if pending}
+      <div class="warn stack">
+        <span>備份檔內容：{pending.cards.length} 張卡片、{pending.exams.length} 筆考試紀錄、{pending.days.length} 天的統計{pending.exportedAt ? `（匯出於 ${pending.exportedAt.slice(0, 10)}）` : ''}。<br />
+          匯入會<strong>取代</strong>這台裝置目前的全部學習紀錄與設定，無法復原。</span>
+        <div class="row">
+          <button class="btn" style="color: var(--danger)" onclick={confirmImport}>確認匯入並取代</button>
+          <button class="btn" onclick={() => (pending = null)}>取消</button>
+        </div>
+      </div>
+    {/if}
     <div class="row" style="flex-wrap: wrap">
       <button class="btn" onclick={resetSettings}>設定恢復預設</button>
       <button class="btn" style="color: var(--danger)" onclick={resetProgress}>

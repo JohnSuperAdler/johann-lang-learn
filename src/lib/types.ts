@@ -79,4 +79,5 @@ export interface Settings {
   reminderTime: string | null;
   langFilter: LangCode | 'all';
   dayCutoffHour: number;
+  enforceLocks: boolean; // 必修單元未通過前置單元時是否擋住（選修單元不擋）
 }

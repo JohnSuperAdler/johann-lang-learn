@@ -12,6 +12,12 @@ import ReviewPage from '../src/pages/ReviewPage.svelte';
 import LessonPage from '../src/pages/LessonPage.svelte';
 import UnitList from '../src/pages/UnitList.svelte';
 import UnitPage from '../src/pages/UnitPage.svelte';
+import StatsPage from '../src/pages/StatsPage.svelte';
+import SearchPage from '../src/pages/SearchPage.svelte';
+import SettingsPage from '../src/pages/SettingsPage.svelte';
+import { exportData, importData, parseBackup } from '../src/lib/backup';
+import { clearAll, getAllDays } from '../src/lib/db';
+import { settings } from '../src/lib/settings.svelte';
 
 beforeAll(() => {
   globalThis.fetch = (async (url: string) => {
@@ -182,5 +188,61 @@ describe('頁面流程', () => {
     await tick();
     await click(btn('開始考試'));
     expect(text()).toContain('第 1 / 15 題');
+  });
+
+  it('統計頁：顯示數字卡、圖表、語言進度與考試紀錄', async () => {
+    app = mount(StatsPage, { target: document.body, props: {} });
+    await tick(10);
+    expect(text()).not.toContain('載入失敗');
+    expect(text()).toContain('連續天數');
+    expect(document.querySelector('svg')).toBeTruthy();
+    expect(text()).toContain('K-A1');
+    expect(text()).toContain('最常忘記的項目');
+    document.querySelector('svg rect')?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    await tick(2);
+    expect(document.querySelector('.tip')).toBeTruthy();
+  });
+
+  it('搜尋頁：可用中文、韓文、無重音的葡文找到項目', async () => {
+    for (const [q, expected] of [['泡菜', '김치'], ['학교', '學校'], ['coracao', 'coração'], ['過去式', 'P-C7']]) {
+      app = mount(SearchPage, { target: document.body, props: { q } });
+      await tick(12);
+      expect(text(), q).toContain(expected);
+      unmount(app); app = null; document.body.innerHTML = '';
+    }
+    app = mount(SearchPage, { target: document.body, props: { q: 'zzzzqqq' } });
+    await tick(6);
+    expect(text()).toContain('找不到');
+  });
+
+  it('依序解鎖：開啟後必修單元被擋、選修單元不擋', async () => {
+    settings.enforceLocks = true;
+    app = mount(UnitPage, { target: document.body, props: { lang: 'ko', unitId: 'K-A3' } });
+    await tick();
+    expect(text()).toContain('本單元尚未解鎖');
+    unmount(app); app = null; document.body.innerHTML = '';
+    app = mount(UnitPage, { target: document.body, props: { lang: 'pt', unitId: 'P-A5' } });
+    await tick();
+    expect(text()).not.toContain('本單元尚未解鎖');
+    settings.enforceLocks = false;
+  });
+
+  it('設定頁可掛載；匯出 → 清空 → 匯入後資料還原', async () => {
+    app = mount(SettingsPage, { target: document.body, props: {} });
+    await tick();
+    expect(text()).toContain('匯出備份檔');
+    const before = await exportData();
+    expect(before.cards.length).toBeGreaterThan(0);
+    const json = JSON.stringify(before);
+    await clearAll();
+    expect(await getAllCards()).toHaveLength(0);
+    await importData(parseBackup(json));
+    expect(await getAllCards()).toHaveLength(before.cards.length);
+    expect(await getAllExams()).toHaveLength(before.exams.length);
+    expect(await getAllDays()).toHaveLength(before.days.length);
+    expect(() => parseBackup('{"app":"other"}')).toThrow('不是本網頁');
+    expect(() => parseBackup('not json')).toThrow('JSON');
+    expect(() => parseBackup(JSON.stringify({ ...before, version: 99 }))).toThrow('請先更新');
+    expect(() => parseBackup(JSON.stringify({ ...before, cards: [{ cardId: 'x' }] }))).toThrow('第 1 張卡片');
   });
 });

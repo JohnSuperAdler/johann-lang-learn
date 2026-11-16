@@ -94,6 +94,18 @@ export async function setMeta(key: string, value: unknown): Promise<void> {
   await (await getDb()).put('meta', { key, value });
 }
 
+/** 以整批資料取代 cards / exams / days（匯入與遷移用），單一交易完成。 */
+export async function replaceAll(data: { cards: CardRecord[]; exams: ExamRecord[]; days: DayStat[] }): Promise<void> {
+  const db = await getDb();
+  const tx = db.transaction(['cards', 'exams', 'days'], 'readwrite');
+  const cards = tx.objectStore('cards'), exams = tx.objectStore('exams'), days = tx.objectStore('days');
+  await Promise.all([
+    cards.clear(), exams.clear(), days.clear(),
+    ...data.cards.map((c) => cards.put(c)), ...data.exams.map((e) => exams.put(e)), ...data.days.map((d) => days.put(d)),
+    tx.done,
+  ]);
+}
+
 /** 清空全部學習紀錄（設定頁「重置進度」用，需二次確認）。 */
 export async function clearAll(): Promise<void> {
   const db = await getDb();

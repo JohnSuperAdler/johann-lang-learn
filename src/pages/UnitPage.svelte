@@ -1,7 +1,8 @@
 <script lang="ts">
   import Loading from '../components/Loading.svelte';
   import { findUnit, loadCourse } from '../lib/content';
-  import { getExamsByUnit } from '../lib/db';
+  import { getAllExams } from '../lib/db';
+  import { settings } from '../lib/settings.svelte';
   import { examUnlock, learnedItemIds } from '../lib/exam';
   import type { LangCode } from '../lib/types';
 
@@ -11,23 +12,35 @@
     const course = await loadCourse(l);
     const found = findUnit(course, id);
     if (!found) throw new Error(`找不到單元 ${id}`);
-    const [exams, learned] = await Promise.all([getExamsByUnit(id), learnedItemIds()]);
+    const [allExams, learned] = await Promise.all([getAllExams(), learnedItemIds()]);
+    const exams = allExams.filter((e) => e.unitId === id);
+    const passedIds = new Set(allExams.filter((e) => e.passed).map((e) => e.unitId));
+    const missing = found.unit.optional ? [] : found.unit.requires.filter((r) => !passedIds.has(r));
     exams.sort((a, b) => a.id.localeCompare(b.id));
     const best = exams.reduce<number | null>((b, e) => (b === null || e.score > b ? e.score : b), null);
     const last = exams.at(-1) ?? null;
     const passed = exams.some((e) => e.passed);
-    return { ...found, best, last, passed, learned, unlock: examUnlock(found.unit, learned), attempts: exams.length };
+    return { ...found, missing, best, last, passed, learned, unlock: examUnlock(found.unit, learned), attempts: exams.length };
   }
 </script>
 
 {#key `${lang}/${unitId}`}
   {#await load(lang, unitId)}
     <Loading />
-  {:then { stage, unit, best, last, passed, learned, unlock, attempts }}
+  {:then { stage, unit, missing, best, last, passed, learned, unlock, attempts }}
     <p class="muted" style="margin: 0"><a href={`#/${lang}`}>‹ {stage.name}</a></p>
     <h1>{unit.id} {unit.name}</h1>
     {#if unit.description}<p class="muted">{unit.description}</p>{/if}
 
+    {#if settings.enforceLocks && missing.length > 0}
+      <section class="card stack" style="margin: 16px 0">
+        <strong>🔒 本單元尚未解鎖</strong>
+        <p class="muted" style="margin: 0">請先通過前置單元的考試：</p>
+        <div class="row" style="flex-wrap: wrap">
+          {#each missing as id (id)}<a class="btn" href={`#/${lang}/unit/${id}`}>{id}</a>{/each}
+        </div>
+      </section>
+    {:else}
     <section class="stack" style="margin: 16px 0">
       {#if unit.lessons.length === 0}
         <p class="empty">本單元教材準備中。</p>
@@ -59,6 +72,7 @@
           <a class="btn" href={`#/review/lesson/${unit.id}`} style="flex: 1">練習模式</a>
         </div>
       </section>
+    {/if}
     {/if}
   {:catch error}
     <Loading {error} />

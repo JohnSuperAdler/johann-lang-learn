@@ -12,6 +12,7 @@ export const DEFAULT_SETTINGS: Settings = {
   reminderTime: null,
   langFilter: 'all',
   dayCutoffHour: 4,
+  enforceLocks: false,
 };
 
 function load(): Settings {
