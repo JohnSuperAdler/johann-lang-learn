@@ -65,13 +65,34 @@
             {"id": "K-B3-L3", "name": "時刻與日期單位", "itemIds": ["ko.word.si", "ko.word.bun", "ko.word.sigan", "ko.word.wol", "ko.word.naljja", "ko.word.nyeon", "ko.word.ju", "ko.word.maeil", "ko.word.saengil"]}
           ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
-        { "id": "K-B4", "name": "飲食與購物", "description": "食物、點餐、價格", "requires": ["K-B1"], "lessons": [],
+        { "id": "K-B4", "name": "飲食與購物", "description": "食物、點餐、價格", "requires": ["K-B1"], "lessons": [
+            {"id": "K-B4-L1", "name": "食物", "itemIds": ["ko.word.gimchi", "ko.word.gogi", "ko.word.ppang", "ko.word.gwail", "ko.word.sagwa", "ko.word.ramyeon", "ko.word.gimbap", "ko.word.bibimbap", "ko.word.bulgogi", "ko.word.tteokbokki"]},
+            {"id": "K-B4-L2", "name": "飲料與味道", "itemIds": ["ko.word.keopi", "ko.word.cha", "ko.word.uyu", "ko.word.juseu", "ko.word.maekju", "ko.word.masisseoyo", "ko.word.maewoyo", "ko.word.darayo", "ko.word.baegopayo", "ko.word.sikdang"]},
+            {"id": "K-B4-L3", "name": "購物", "itemIds": ["ko.word.gage", "ko.word.sijang", "ko.word.don", "ko.word.eolmayeyo", "ko.word.bissayo", "ko.word.ssayo", "ko.word.juseyo", "ko.word.menyu", "ko.word.gyesan", "ko.word.kadeu"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
-        { "id": "K-B5", "name": "身體與動作", "description": "身體部位、踢、蹲、轉、跳等運動動詞", "requires": ["K-B2"], "lessons": [],
+        { "id": "K-B5", "name": "身體與動作", "description": "身體部位、踢、蹲、轉、跳等運動動詞", "requires": ["K-B2"], "lessons": [
+            {"id": "K-B5-L1", "name": "頭與四肢", "itemIds": ["ko.word.meori", "ko.word.eolgul", "ko.word.ko", "ko.word.ip", "ko.word.gwi", "ko.word.son", "ko.word.bal", "ko.word.dari", "ko.word.pal-2", "ko.word.eokkae"]},
+            {"id": "K-B5-L2", "name": "軀幹與其他", "itemIds": ["ko.word.heori", "ko.word.mureup", "ko.word.bae", "ko.word.deung", "ko.word.mok", "ko.word.gaseum", "ko.word.songarak", "ko.word.balmok", "ko.word.geunyuk", "ko.word.ttam"]},
+            {"id": "K-B5-L3", "name": "運動動作", "itemIds": ["ko.word.chada", "ko.word.ttwida", "ko.word.dolda", "ko.word.anda", "ko.word.seoda", "ko.word.geotda", "ko.word.pihada", "ko.word.neomeojida", "ko.word.undonghada", "ko.word.swida"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
-        { "id": "K-B6", "name": "場所與交通", "description": "建築、方向、交通工具", "requires": ["K-B2"], "lessons": [],
+        { "id": "K-B6", "name": "場所與交通", "description": "建築、方向、交通工具", "requires": ["K-B2"], "lessons": [
+            {"id": "K-B6-L1", "name": "場所", "itemIds": ["ko.word.hakgyo", "ko.word.hoesa", "ko.word.byeongwon", "ko.word.eunhaeng", "ko.word.hwajangsil", "ko.word.pyeonuijeom", "ko.word.kape", "ko.word.gongwon", "ko.word.hotel"]},
+            {"id": "K-B6-L2", "name": "交通", "itemIds": ["ko.word.jihacheol", "ko.word.beoseu", "ko.word.taeksi", "ko.word.gicha", "ko.word.bihaenggi", "ko.word.yeok", "ko.word.gonghang", "ko.word.gil"]},
+            {"id": "K-B6-L3", "name": "位置與方向", "itemIds": ["ko.word.yeogi", "ko.word.jeogi", "ko.word.eodi", "ko.word.oreunjjok", "ko.word.oenjjok", "ko.word.wi", "ko.word.arae", "ko.word.yeop"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
-        { "id": "K-B7", "name": "高頻動詞與形容詞", "description": "動詞 50、形容詞 30", "requires": ["K-B5"], "lessons": [],
+        { "id": "K-B7", "name": "高頻動詞與形容詞", "description": "動詞 50、形容詞 30", "requires": ["K-B5"], "lessons": [
+            {"id": "K-B7-L1", "name": "動詞一：基本動作", "itemIds": ["ko.word.gada", "ko.word.oda", "ko.word.meokda", "ko.word.masida", "ko.word.boda", "ko.word.deutda", "ko.word.malhada", "ko.word.ikda", "ko.word.sseuda", "ko.word.hada"]},
+            {"id": "K-B7-L2", "name": "動詞二：日常生活", "itemIds": ["ko.word.jada", "ko.word.ireonada", "ko.word.sada", "ko.word.palda", "ko.word.juda", "ko.word.batda", "ko.word.mannada", "ko.word.gidarida", "ko.word.alda", "ko.word.moreuda"]},
+            {"id": "K-B7-L3", "name": "動詞三：學習、工作、感受", "itemIds": ["ko.word.baeuda", "ko.word.gareuchida", "ko.word.gongbuhada", "ko.word.ilhada", "ko.word.nolda", "ko.word.salda", "ko.word.joahada", "ko.word.sireohada", "ko.word.saranghada", "ko.word.saenggakada"]},
+            {"id": "K-B7-L4", "name": "動詞四：移動與開關", "itemIds": ["ko.word.tada", "ko.word.naerida", "ko.word.yeolda", "ko.word.datda", "ko.word.sijakada", "ko.word.kkeunnada", "ko.word.chatda", "ko.word.mandeulda", "ko.word.ipda", "ko.word.beotda"]},
+            {"id": "K-B7-L5", "name": "動詞五：互動與存在", "itemIds": ["ko.word.ssitda", "ko.word.utda", "ko.word.ulda", "ko.word.jeonhwahada", "ko.word.dowajuda", "ko.word.mutda", "ko.word.daedapada", "ko.word.piryohada", "ko.word.itda", "ko.word.eopda"]},
+            {"id": "K-B7-L6", "name": "形容詞一：大小、多少、冷熱", "itemIds": ["ko.word.keuda", "ko.word.jakda", "ko.word.manta", "ko.word.jeokda", "ko.word.jota", "ko.word.nappeuda", "ko.word.deopda", "ko.word.chupda", "ko.word.tteugeopda", "ko.word.chagapda"]},
+            {"id": "K-B7-L7", "name": "形容詞二：長短、快慢、難易", "itemIds": ["ko.word.gilda", "ko.word.jjalda", "ko.word.nopda", "ko.word.natda", "ko.word.ppareuda", "ko.word.neurida", "ko.word.swipda", "ko.word.eoryeopda", "ko.word.jaemiitda", "ko.word.jaemieopda"]},
+            {"id": "K-B7-L8", "name": "形容詞三：外觀、狀態、情緒", "itemIds": ["ko.word.yeppeuda", "ko.word.meositda", "ko.word.bappeuda", "ko.word.pigonhada", "ko.word.apeuda", "ko.word.gippeuda", "ko.word.seulpeuda", "ko.word.gakkapda", "ko.word.meolda", "ko.word.saeropda"]}
+          ],
           "exam": { "questionCount": 25, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } }
       ]
     },
@@ -84,19 +105,37 @@
               "itemIds": ["ko.grammar.sov", "ko.grammar.ieyo", "ko.grammar.anieyo"] }
           ],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
-        { "id": "K-C2", "name": "基本助詞", "description": "은/는、이/가、을/를、에、에서、도", "requires": ["K-C1"], "lessons": [],
+        { "id": "K-C2", "name": "基本助詞", "description": "은/는、이/가、을/를、에、에서、도", "requires": ["K-C1"], "lessons": [
+            {"id": "K-C2-L1", "name": "은/는、이/가、을/를", "itemIds": ["ko.grammar.topic-eun-neun", "ko.grammar.subject-i-ga", "ko.grammar.object-eul-reul"]},
+            {"id": "K-C2-L2", "name": "에、에서、도", "itemIds": ["ko.grammar.particle-e", "ko.grammar.particle-eseo", "ko.grammar.particle-do"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
-        { "id": "K-C3", "name": "動詞現在式", "description": "-아요/어요/해요 變化規則", "requires": ["K-C2"], "lessons": [],
+        { "id": "K-C3", "name": "動詞現在式", "description": "-아요/어요/해요 變化規則", "requires": ["K-C2"], "lessons": [
+            {"id": "K-C3-L1", "name": "-아요／-어요／해요", "itemIds": ["ko.grammar.present-ayo", "ko.grammar.present-eoyo", "ko.grammar.present-haeyo"]},
+            {"id": "K-C3-L2", "name": "用法與不規則", "itemIds": ["ko.grammar.present-usage", "ko.grammar.present-irregular"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice", "spell"] } },
-        { "id": "K-C4", "name": "否定", "description": "안、-지 않아요、못", "requires": ["K-C3"], "lessons": [],
+        { "id": "K-C4", "name": "否定", "description": "안、-지 않아요、못", "requires": ["K-C3"], "lessons": [
+            {"id": "K-C4-L1", "name": "안、-지 않아요、못", "itemIds": ["ko.grammar.neg-an", "ko.grammar.neg-ji-anayo", "ko.grammar.neg-mot"]}
+          ],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
-        { "id": "K-C5", "name": "過去式", "description": "-았/었/했어요", "requires": ["K-C3"], "lessons": [],
+        { "id": "K-C5", "name": "過去式", "description": "-았/었/했어요", "requires": ["K-C3"], "lessons": [
+            {"id": "K-C5-L1", "name": "-았어요／-었어요", "itemIds": ["ko.grammar.past-asseoyo", "ko.grammar.past-eosseoyo"]},
+            {"id": "K-C5-L2", "name": "했어요、名詞的過去式", "itemIds": ["ko.grammar.past-haesseoyo", "ko.grammar.past-noun"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice", "spell"] } },
-        { "id": "K-C6", "name": "未來與意圖", "description": "-(으)ㄹ 거예요、-(으)ㄹ게요", "requires": ["K-C5"], "lessons": [],
+        { "id": "K-C6", "name": "未來與意圖", "description": "-(으)ㄹ 거예요、-(으)ㄹ게요", "requires": ["K-C5"], "lessons": [
+            {"id": "K-C6-L1", "name": "-(으)ㄹ 거예요、-(으)ㄹ까요、-(으)ㄹ게요", "itemIds": ["ko.grammar.future-geoyeyo", "ko.grammar.future-kkayo", "ko.grammar.future-geyo"]}
+          ],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
-        { "id": "K-C7", "name": "連接詞尾", "description": "-고、-지만、-아서/어서、-(으)니까", "requires": ["K-C5"], "lessons": [],
+        { "id": "K-C7", "name": "連接詞尾", "description": "-고、-지만、-아서/어서、-(으)니까", "requires": ["K-C5"], "lessons": [
+            {"id": "K-C7-L1", "name": "-고、-지만", "itemIds": ["ko.grammar.conn-go", "ko.grammar.conn-jiman"]},
+            {"id": "K-C7-L2", "name": "-아서／어서、-(으)니까", "itemIds": ["ko.grammar.conn-aseo", "ko.grammar.conn-nikka"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
-        { "id": "K-C8", "name": "能力與願望", "description": "-(으)ㄹ 수 있어요/없어요、-고 싶어요", "requires": ["K-C6"], "lessons": [],
+        { "id": "K-C8", "name": "能力與願望", "description": "-(으)ㄹ 수 있어요/없어요、-고 싶어요", "requires": ["K-C6"], "lessons": [
+            {"id": "K-C8-L1", "name": "-(으)ㄹ 수 있어요／없어요、-고 싶어요", "itemIds": ["ko.grammar.can", "ko.grammar.cannot", "ko.grammar.want"]}
+          ],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } }
       ]
     }
