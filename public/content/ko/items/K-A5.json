@@ -1,0 +1,22 @@
+[
+  {"id": "ko.word.san", "type": "word", "text": "산", "roman": "san", "pos": "名", "meaning": "山", "note": "音節結構：初聲 ㅅ＋中聲 ㅏ＋終聲 ㄴ，終聲（받침）寫在下方。\n終聲 ㄴ 讀 n。", "examples": [{"text": "산에 가요", "meaning": "去山上"}]},
+  {"id": "ko.word.mun", "type": "word", "text": "문", "roman": "mun", "pos": "名", "meaning": "門", "note": "終聲 ㄴ 讀 n。", "examples": [{"text": "문을 열어요", "meaning": "開門"}]},
+  {"id": "ko.word.nun", "type": "word", "text": "눈", "roman": "nun", "pos": "名", "meaning": "眼睛／雪", "note": "終聲 ㄴ 讀 n。同一個字有兩個意思。", "examples": [{"text": "눈이 커요", "meaning": "眼睛很大"}]},
+  {"id": "ko.word.mom", "type": "word", "text": "몸", "roman": "mom", "pos": "名", "meaning": "身體", "note": "終聲 ㅁ 讀 m，嘴唇要閉起來。", "examples": [{"text": "몸이 아파요", "meaning": "身體不舒服"}]},
+  {"id": "ko.word.bam", "type": "word", "text": "밤", "roman": "bam", "pos": "名", "meaning": "夜晚／栗子", "note": "終聲 ㅁ 讀 m。", "examples": [{"text": "밤에 자요", "meaning": "晚上睡覺"}]},
+  {"id": "ko.word.gang", "type": "word", "text": "강", "roman": "gang", "pos": "名", "meaning": "江、河", "note": "終聲 ㅇ 讀 ng（字首的 ㅇ 不發音，終聲才發音）。", "examples": [{"text": "강이 길어요", "meaning": "河很長"}]},
+  {"id": "ko.word.bang", "type": "word", "text": "방", "roman": "bang", "pos": "名", "meaning": "房間", "note": "終聲 ㅇ 讀 ng。", "examples": [{"text": "방이 작아요", "meaning": "房間很小"}]},
+  {"id": "ko.word.mul", "type": "word", "text": "물", "roman": "mul", "pos": "名", "meaning": "水", "note": "終聲 ㄹ 讀 l，舌尖頂住上顎不放開。", "examples": [{"text": "물을 마셔요", "meaning": "喝水"}]},
+  {"id": "ko.word.mal", "type": "word", "text": "말", "roman": "mal", "pos": "名", "meaning": "話／馬", "note": "終聲 ㄹ 讀 l。", "examples": [{"text": "말을 해요", "meaning": "說話"}]},
+  {"id": "ko.word.dal", "type": "word", "text": "달", "roman": "dal", "pos": "名", "meaning": "月亮", "note": "終聲 ㄹ 讀 l。", "examples": [{"text": "달이 예뻐요", "meaning": "月亮很美"}]},
+  {"id": "ko.word.chaek", "type": "word", "text": "책", "roman": "chaek", "pos": "名", "meaning": "書", "note": "終聲 ㄱ 讀 k，但只做出嘴形不吐氣（不除阻）。", "examples": [{"text": "책을 읽어요", "meaning": "讀書"}]},
+  {"id": "ko.word.bueok", "type": "word", "text": "부엌", "roman": "bueok", "pos": "名", "meaning": "廚房", "note": "終聲 ㅋ 也讀代表音 k。\n規則：ㄱ ㅋ ㄲ 在終聲都讀 k。", "examples": [{"text": "부엌에 있어요", "meaning": "在廚房"}]},
+  {"id": "ko.word.bak", "type": "word", "text": "밖", "roman": "bak", "pos": "名", "meaning": "外面", "note": "終聲 ㄲ 也讀代表音 k。", "examples": [{"text": "밖에 나가요", "meaning": "到外面去"}]},
+  {"id": "ko.word.ot", "type": "word", "text": "옷", "roman": "ot", "pos": "名", "meaning": "衣服", "note": "終聲 ㅅ 讀代表音 t（不是 s）。\n規則：ㄷ ㅌ ㅅ ㅆ ㅈ ㅊ ㅎ 在終聲都讀 t。", "examples": [{"text": "옷을 입어요", "meaning": "穿衣服"}]},
+  {"id": "ko.word.nat", "type": "word", "text": "낮", "roman": "nat", "pos": "名", "meaning": "白天", "note": "終聲 ㅈ 讀代表音 t。", "examples": [{"text": "낮에 일해요", "meaning": "白天工作"}]},
+  {"id": "ko.word.kkot", "type": "word", "text": "꽃", "roman": "kkot", "pos": "名", "meaning": "花", "note": "終聲 ㅊ 讀代表音 t。", "examples": [{"text": "꽃이 예뻐요", "meaning": "花很漂亮"}]},
+  {"id": "ko.word.kkeut", "type": "word", "text": "끝", "roman": "kkeut", "pos": "名", "meaning": "結束、盡頭", "note": "終聲 ㅌ 讀代表音 t。", "examples": [{"text": "이제 끝이에요", "meaning": "現在結束了"}]},
+  {"id": "ko.word.bap", "type": "word", "text": "밥", "roman": "bap", "pos": "名", "meaning": "飯", "note": "終聲 ㅂ 讀 p，雙唇閉住不吐氣。", "examples": [{"text": "밥을 먹어요", "meaning": "吃飯"}]},
+  {"id": "ko.word.ap", "type": "word", "text": "앞", "roman": "ap", "pos": "名", "meaning": "前面", "note": "終聲 ㅍ 也讀代表音 p。\n規則：ㅂ ㅍ 在終聲都讀 p。", "examples": [{"text": "집 앞에 있어요", "meaning": "在家前面"}]},
+  {"id": "ko.word.jip", "type": "word", "text": "집", "roman": "jip", "pos": "名", "meaning": "家", "note": "終聲 ㅂ 讀 p。\n終聲只有七個代表音：ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅇ。", "examples": [{"text": "집에 가요", "meaning": "回家"}]}
+]

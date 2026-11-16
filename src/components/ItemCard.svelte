@@ -26,6 +26,7 @@
       <SpeakButton text={say} {lang} audio={item.audio ?? null} size="lg" />
       <SpeakButton text={say} {lang} audio={item.audio ?? null} slow label="慢速" />
     </div>
+    {#if item.note}<p class="note">{item.note}</p>{/if}
   {:else}
     <h2 style="text-align: center">{item.title}</h2>
     {#if item.pattern}<div class="pattern">{item.pattern}</div>{/if}

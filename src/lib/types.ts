@@ -31,6 +31,7 @@ export interface LetterItem extends ItemBase {
 export interface WordItem extends ItemBase {
   type: 'word'; text: string; roman?: string; ipa?: string; pos?: string; meaning: string;
   accepted?: string[]; examples?: Example[]; image?: string | null;
+  note?: string; // 發音或用法提示
 }
 export interface Drill { type: QuestionType; text: string; answer: string; options?: string[]; }
 export interface GrammarItem extends ItemBase {

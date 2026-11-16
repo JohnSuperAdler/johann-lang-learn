@@ -14,15 +14,32 @@
               "itemIds": ["ko.letter.ya", "ko.letter.yeo", "ko.letter.yo", "ko.letter.yu"] }
           ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose", "match"] } },
-        { "id": "K-A2", "name": "基本子音", "description": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ", "requires": ["K-A1"], "lessons": [],
+        { "id": "K-A2", "name": "基本子音", "description": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ", "requires": ["K-A1"], "lessons": [
+            {"id": "K-A2-L1", "name": "ㄱ ㄴ ㄷ ㄹ ㅁ", "itemIds": ["ko.letter.g", "ko.letter.n", "ko.letter.d", "ko.letter.r", "ko.letter.m"]},
+            {"id": "K-A2-L2", "name": "ㅂ ㅅ ㅇ ㅈ", "itemIds": ["ko.letter.b", "ko.letter.s", "ko.letter.ng", "ko.letter.j"]},
+            {"id": "K-A2-L3", "name": "ㅊ ㅋ ㅌ ㅍ ㅎ（送氣音）", "itemIds": ["ko.letter.ch", "ko.letter.k", "ko.letter.t", "ko.letter.p", "ko.letter.h"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose", "match"] } },
-        { "id": "K-A3", "name": "複合母音", "description": "ㅐ ㅔ ㅒ ㅖ ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ", "requires": ["K-A2"], "lessons": [],
+        { "id": "K-A3", "name": "複合母音", "description": "ㅐ ㅔ ㅒ ㅖ ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ", "requires": ["K-A2"], "lessons": [
+            {"id": "K-A3-L1", "name": "ㅐ ㅔ ㅒ ㅖ", "itemIds": ["ko.letter.ae", "ko.letter.e", "ko.letter.yae", "ko.letter.ye"]},
+            {"id": "K-A3-L2", "name": "ㅘ ㅙ ㅚ", "itemIds": ["ko.letter.wa", "ko.letter.wae", "ko.letter.oe"]},
+            {"id": "K-A3-L3", "name": "ㅝ ㅞ ㅟ ㅢ", "itemIds": ["ko.letter.wo", "ko.letter.we", "ko.letter.wi", "ko.letter.ui"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose", "match"] } },
-        { "id": "K-A4", "name": "雙子音", "description": "ㄲ ㄸ ㅃ ㅆ ㅉ", "requires": ["K-A2"], "lessons": [],
+        { "id": "K-A4", "name": "雙子音", "description": "ㄲ ㄸ ㅃ ㅆ ㅉ", "requires": ["K-A2"], "lessons": [
+            {"id": "K-A4-L1", "name": "ㄲ ㄸ ㅃ ㅆ ㅉ（緊音）", "itemIds": ["ko.letter.kk", "ko.letter.tt", "ko.letter.pp", "ko.letter.ss", "ko.letter.jj"]}
+          ],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "compose", "match"] } },
-        { "id": "K-A5", "name": "音節結構與終聲", "description": "子母音拼合、受最（받침）七個代表音", "requires": ["K-A3", "K-A4"], "lessons": [],
+        { "id": "K-A5", "name": "音節結構與終聲", "description": "子母音拼合、受最（받침）七個代表音", "requires": ["K-A3", "K-A4"], "lessons": [
+            {"id": "K-A5-L1", "name": "響音終聲 ㄴ ㅁ ㅇ ㄹ", "itemIds": ["ko.word.san", "ko.word.mun", "ko.word.nun", "ko.word.mom", "ko.word.bam", "ko.word.gang", "ko.word.bang", "ko.word.mul", "ko.word.mal", "ko.word.dal"]},
+            {"id": "K-A5-L2", "name": "代表音 ㄱ ㄷ ㅂ（不除阻）", "itemIds": ["ko.word.chaek", "ko.word.bueok", "ko.word.bak", "ko.word.ot", "ko.word.nat", "ko.word.kkot", "ko.word.kkeut", "ko.word.bap", "ko.word.ap", "ko.word.jip"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "compose", "match"] } },
-        { "id": "K-A6", "name": "連音與基本音變", "description": "連音、鼻音化、激音化、硬化", "requires": ["K-A5"], "lessons": [],
+        { "id": "K-A6", "name": "連音與基本音變", "description": "連音、鼻音化、激音化、硬化", "requires": ["K-A5"], "lessons": [
+            {"id": "K-A6-L1", "name": "連音", "itemIds": ["ko.grammar.linking", "ko.word.eumak", "ko.word.hangugeo", "ko.word.isseoyo", "ko.word.ilgeoyo"]},
+            {"id": "K-A6-L2", "name": "鼻音化", "itemIds": ["ko.grammar.nasalization", "ko.word.imnida", "ko.word.hamnida", "ko.word.hangungmal", "ko.word.gungmul"]},
+            {"id": "K-A6-L3", "name": "激音化與硬化", "itemIds": ["ko.grammar.aspiration", "ko.grammar.tensing", "ko.word.chuka", "ko.word.baekwajeom", "ko.word.eotteoke", "ko.word.sukje", "ko.word.ipgu", "ko.word.gukbap"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation"] } }
       ]
     },
@@ -31,13 +48,22 @@
       "units": [
         { "id": "K-B1", "name": "數字", "description": "漢字數字與固有數字、量詞", "requires": ["K-A5"],
           "lessons": [
-            { "id": "K-B1-L1", "name": "漢字數字 1–10",
-              "itemIds": ["ko.word.il", "ko.word.i", "ko.word.sam", "ko.word.sa", "ko.word.o", "ko.word.yuk", "ko.word.chil", "ko.word.pal", "ko.word.gu", "ko.word.sip"] }
+            {"id": "K-B1-L1", "name": "漢字數字 1–10", "itemIds": ["ko.word.il", "ko.word.i", "ko.word.sam", "ko.word.sa", "ko.word.o", "ko.word.yuk", "ko.word.chil", "ko.word.pal", "ko.word.gu", "ko.word.sip"]},
+            {"id": "K-B1-L2", "name": "固有數字 1–10", "itemIds": ["ko.word.hana", "ko.word.dul", "ko.word.set", "ko.word.net", "ko.word.daseot", "ko.word.yeoseot", "ko.word.ilgop", "ko.word.yeodeol", "ko.word.ahop", "ko.word.yeol"]},
+            {"id": "K-B1-L3", "name": "大數與量詞", "itemIds": ["ko.word.yeong", "ko.word.baek", "ko.word.cheon", "ko.word.man", "ko.word.gae", "ko.word.myeong", "ko.word.sal", "ko.word.beon", "ko.word.won", "ko.word.jan"]}
           ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
-        { "id": "K-B2", "name": "問候與自我介紹", "description": "問候、國籍、職業、道謝道歉", "requires": ["K-A5"], "lessons": [],
+        { "id": "K-B2", "name": "問候與自我介紹", "description": "問候、國籍、職業、道謝道歉", "requires": ["K-A5"], "lessons": [
+            {"id": "K-B2-L1", "name": "問候、道謝、道歉", "itemIds": ["ko.word.annyeonghaseyo", "ko.word.annyeonghi-gaseyo", "ko.word.annyeonghi-gyeseyo", "ko.word.gamsahamnida", "ko.word.gomawoyo", "ko.word.joesonghamnida", "ko.word.mianhaeyo", "ko.word.gwaenchanayo", "ko.word.ne", "ko.word.aniyo"]},
+            {"id": "K-B2-L2", "name": "自我介紹", "itemIds": ["ko.word.jeo", "ko.word.ireum", "ko.word.saram", "ko.word.hanguk", "ko.word.daeman", "ko.word.haksaeng", "ko.word.seonsaengnim", "ko.word.hoesawon", "ko.word.chingu", "ko.word.bangapseumnida"]},
+            {"id": "K-B2-L3", "name": "常用客套話", "itemIds": ["ko.word.cheoeum-boepgetseumnida", "ko.word.jal-butakamnida", "ko.word.eoseo-oseyo", "ko.word.jal-jinaeyo", "ko.word.oraenmanieyo"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
-        { "id": "K-B3", "name": "時間與日期", "description": "星期、月、時鐘讀法", "requires": ["K-B1"], "lessons": [],
+        { "id": "K-B3", "name": "時間與日期", "description": "星期、月、時鐘讀法", "requires": ["K-B1"], "lessons": [
+            {"id": "K-B3-L1", "name": "星期", "itemIds": ["ko.word.woryoil", "ko.word.hwayoil", "ko.word.suyoil", "ko.word.mogyoil", "ko.word.geumyoil", "ko.word.toyoil", "ko.word.iryoil", "ko.word.jumal"]},
+            {"id": "K-B3-L2", "name": "今天、明天、早晚", "itemIds": ["ko.word.oneul", "ko.word.naeil", "ko.word.eoje", "ko.word.jigeum", "ko.word.achim", "ko.word.jeomsim", "ko.word.jeonyeok", "ko.word.ojeon", "ko.word.ohu"]},
+            {"id": "K-B3-L3", "name": "時刻與日期單位", "itemIds": ["ko.word.si", "ko.word.bun", "ko.word.sigan", "ko.word.wol", "ko.word.naljja", "ko.word.nyeon", "ko.word.ju", "ko.word.maeil", "ko.word.saengil"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
         { "id": "K-B4", "name": "飲食與購物", "description": "食物、點餐、價格", "requires": ["K-B1"], "lessons": [],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },

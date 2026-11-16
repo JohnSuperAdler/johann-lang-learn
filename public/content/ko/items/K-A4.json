@@ -1,0 +1,7 @@
+[
+  {"id": "ko.letter.kk", "type": "letter", "text": "ㄲ", "roman": "kk", "name": "쌍기역（ssanggiyeok）", "tts": "까", "note": "兩個 ㄱ 並排。\n喉嚨先繃緊再發音，完全不送氣，像中文「ㄍ」的四聲「尬」。", "examples": [{"text": "꼬리", "meaning": "尾巴"}, {"text": "토끼", "meaning": "兔子"}]},
+  {"id": "ko.letter.tt", "type": "letter", "text": "ㄸ", "roman": "tt", "name": "쌍디귿（ssangdigeut）", "tts": "따", "note": "兩個 ㄷ 並排。\n繃緊不送氣，像中文「大」的聲母。", "examples": [{"text": "또", "meaning": "又"}, {"text": "따요", "meaning": "摘"}]},
+  {"id": "ko.letter.pp", "type": "letter", "text": "ㅃ", "roman": "pp", "name": "쌍비읍（ssangbieup）", "tts": "빠", "note": "兩個 ㅂ 並排。\n繃緊不送氣，像中文「爸」的聲母。", "examples": [{"text": "아빠", "meaning": "爸爸"}, {"text": "오빠", "meaning": "哥哥（女生用）"}]},
+  {"id": "ko.letter.ss", "type": "letter", "text": "ㅆ", "roman": "ss", "name": "쌍시옷（ssangsiot）", "tts": "싸", "note": "兩個 ㅅ 並排。\n比 ㅅ 更緊更強的 s。", "examples": [{"text": "싸요", "meaning": "便宜"}, {"text": "아저씨", "meaning": "大叔"}]},
+  {"id": "ko.letter.jj", "type": "letter", "text": "ㅉ", "roman": "jj", "name": "쌍지읒（ssangjieut）", "tts": "짜", "note": "兩個 ㅈ 並排。\n繃緊不送氣，像中文「雜」的聲母。", "examples": [{"text": "짜요", "meaning": "很鹹"}, {"text": "가짜", "meaning": "假貨"}]}
+]

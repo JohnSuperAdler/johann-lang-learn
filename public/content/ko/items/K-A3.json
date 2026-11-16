@@ -1,0 +1,13 @@
+[
+  {"id": "ko.letter.ae", "type": "letter", "text": "ㅐ", "roman": "ae", "name": "母音 ㅐ", "tts": "애", "note": "ㅏ＋ㅣ 合成。\n嘴形比 ㅔ 略大，像英文 bed 的 e；現代首爾音與 ㅔ 幾乎相同。", "examples": [{"text": "개", "meaning": "狗"}, {"text": "새", "meaning": "鳥"}]},
+  {"id": "ko.letter.e", "type": "letter", "text": "ㅔ", "roman": "e", "name": "母音 ㅔ", "tts": "에", "note": "ㅓ＋ㅣ 合成。\n像中文「ㄝ」。聽不出與 ㅐ 的差別是正常的，靠拼字記。", "examples": [{"text": "네", "meaning": "是"}, {"text": "가게", "meaning": "商店"}]},
+  {"id": "ko.letter.yae", "type": "letter", "text": "ㅒ", "roman": "yae", "name": "母音 ㅒ", "tts": "얘", "note": "ㅑ＋ㅣ 合成，y＋ㅐ。\n很少見，最常見於 얘기（談話）。", "examples": [{"text": "얘기", "meaning": "談話、故事"}]},
+  {"id": "ko.letter.ye", "type": "letter", "text": "ㅖ", "roman": "ye", "name": "母音 ㅖ", "tts": "예", "note": "ㅕ＋ㅣ 合成，y＋ㅔ。\n像中文「耶」。", "examples": [{"text": "예", "meaning": "是（敬語）"}, {"text": "시계", "meaning": "鐘錶"}]},
+  {"id": "ko.letter.wa", "type": "letter", "text": "ㅘ", "roman": "wa", "name": "母音 ㅘ", "tts": "와", "note": "ㅗ＋ㅏ 快速連讀，像中文「哇」。", "examples": [{"text": "사과", "meaning": "蘋果"}, {"text": "와요", "meaning": "來"}]},
+  {"id": "ko.letter.wae", "type": "letter", "text": "ㅙ", "roman": "wae", "name": "母音 ㅙ", "tts": "왜", "note": "ㅗ＋ㅐ 連讀，像英文 wet 的 we。", "examples": [{"text": "왜", "meaning": "為什麼"}, {"text": "돼지", "meaning": "豬"}]},
+  {"id": "ko.letter.oe", "type": "letter", "text": "ㅚ", "roman": "oe", "name": "母音 ㅚ", "tts": "외", "note": "寫成 ㅗ＋ㅣ，但實際讀 we，與 ㅙ、ㅞ 幾乎同音。", "examples": [{"text": "회사", "meaning": "公司"}, {"text": "외우다", "meaning": "背誦"}]},
+  {"id": "ko.letter.wo", "type": "letter", "text": "ㅝ", "roman": "wo", "name": "母音 ㅝ", "tts": "워", "note": "ㅜ＋ㅓ 連讀，像中文「窩」。", "examples": [{"text": "뭐", "meaning": "什麼"}, {"text": "더워요", "meaning": "很熱"}]},
+  {"id": "ko.letter.we", "type": "letter", "text": "ㅞ", "roman": "we", "name": "母音 ㅞ", "tts": "웨", "note": "ㅜ＋ㅔ 連讀，讀 we；多用於外來語。", "examples": [{"text": "웨이터", "meaning": "服務生"}]},
+  {"id": "ko.letter.wi", "type": "letter", "text": "ㅟ", "roman": "wi", "name": "母音 ㅟ", "tts": "위", "note": "ㅜ＋ㅣ 連讀，像中文「威」。", "examples": [{"text": "귀", "meaning": "耳朵"}, {"text": "위", "meaning": "上面"}]},
+  {"id": "ko.letter.ui", "type": "letter", "text": "ㅢ", "roman": "ui", "name": "母音 ㅢ", "tts": "의", "note": "ㅡ＋ㅣ 連讀，先扁唇 eu 再滑到 i。\n當助詞「的」時常讀成 e。", "examples": [{"text": "의사", "meaning": "醫生"}, {"text": "의자", "meaning": "椅子"}]}
+]
