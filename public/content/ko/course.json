@@ -29,7 +29,11 @@
     {
       "id": "K-B", "name": "單字", "kind": "vocab",
       "units": [
-        { "id": "K-B1", "name": "數字", "description": "漢字數字與固有數字、量詞", "requires": ["K-A5"], "lessons": [],
+        { "id": "K-B1", "name": "數字", "description": "漢字數字與固有數字、量詞", "requires": ["K-A5"],
+          "lessons": [
+            { "id": "K-B1-L1", "name": "漢字數字 1–10",
+              "itemIds": ["ko.word.il", "ko.word.i", "ko.word.sam", "ko.word.sa", "ko.word.o", "ko.word.yuk", "ko.word.chil", "ko.word.pal", "ko.word.gu", "ko.word.sip"] }
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
         { "id": "K-B2", "name": "問候與自我介紹", "description": "問候、國籍、職業、道謝道歉", "requires": ["K-A5"], "lessons": [],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
@@ -48,7 +52,11 @@
     {
       "id": "K-C", "name": "文法", "kind": "grammar",
       "units": [
-        { "id": "K-C1", "name": "句子結構", "description": "SOV 語序、이에요/예요、이/가 아니에요", "requires": ["K-B2"], "lessons": [],
+        { "id": "K-C1", "name": "句子結構", "description": "SOV 語序、이에요/예요、이/가 아니에요", "requires": ["K-B2"],
+          "lessons": [
+            { "id": "K-C1-L1", "name": "語序、是、不是",
+              "itemIds": ["ko.grammar.sov", "ko.grammar.ieyo", "ko.grammar.anieyo"] }
+          ],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },
         { "id": "K-C2", "name": "基本助詞", "description": "은/는、이/가、을/를、에、에서、도", "requires": ["K-C1"], "lessons": [],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["fill", "reorder", "choice"] } },

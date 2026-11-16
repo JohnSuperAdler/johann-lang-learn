@@ -134,6 +134,14 @@ function makeMatch(items: Item[], lang: LangCode, n: number, seq: number, rng: R
   };
 }
 
+/** 單一文法項目的即時練習題（F1.5）：drills 優先，不足再用例句重組，最多 max 題。 */
+export function drillQuestions(item: Item, lang: LangCode, max = 5, rng: Rng = Math.random): Question[] {
+  const all = candidatesFor(item, [item], lang, new Set<QuestionType>(['fill', 'choice', 'reorder']), rng);
+  const fromDrills = shuffle(all.filter((q) => !q.id.includes(':reorder:e')), rng);
+  const fromExamples = shuffle(all.filter((q) => q.id.includes(':reorder:e')), rng);
+  return [...fromDrills, ...fromExamples].slice(0, max);
+}
+
 export interface ExamSpecLite { questionCount: number; questionTypes: QuestionType[]; }
 
 /** 產生一份考題。每個項目輪流出題，題型盡量平均；題庫不足時允許重複題型。 */

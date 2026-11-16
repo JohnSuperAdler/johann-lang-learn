@@ -9,9 +9,9 @@
   import { speak, stopSpeech } from '../lib/speech.svelte';
 
   let {
-    q, isLast, onAnswer, onNext,
+    q, isLast, onAnswer, onNext, autofocus = true, nextLabel,
   }: {
-    q: Question; isLast: boolean;
+    q: Question; isLast: boolean; autofocus?: boolean; nextLabel?: string;
     onAnswer: (r: { score: number; wrongItemIds: string[] }) => void; onNext: () => void;
   } = $props();
 
@@ -33,7 +33,7 @@
   $effect(() => {
     if ((q.kind === 'listen-choice' || q.kind === 'dictation') && q.speak) void speak(q.speak, { lang: q.lang, audio: q.audio ?? null });
   });
-  $effect(() => { inputEl?.focus(); });
+  $effect(() => { if (autofocus) inputEl?.focus(); });
   $effect(() => () => stopSpeech());
 
   function finish(v: Verdict, wrongIds: string[]) {
@@ -175,7 +175,7 @@
     <strong>{VERDICT_LABEL[verdict]}</strong>
     <div lang={flang}>正解：{q.correctText}</div>
   </div>
-  <button class="btn primary big" onclick={onNext}>{isLast ? '看結果' : '下一題'}（Enter）</button>
+  <button class="btn primary big" onclick={onNext}>{nextLabel ?? (isLast ? '看結果' : '下一題')}（Enter）</button>
 {/if}
 
 <style>

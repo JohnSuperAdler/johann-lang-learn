@@ -1,0 +1,22 @@
+[
+  { "id": "ko.word.il", "type": "word", "text": "일", "roman": "il", "pos": "數詞", "meaning": "一（漢字數字）",
+    "examples": [{ "text": "일월", "meaning": "一月" }], "tags": ["number", "sino"] },
+  { "id": "ko.word.i", "type": "word", "text": "이", "roman": "i", "pos": "數詞", "meaning": "二（漢字數字）",
+    "examples": [{ "text": "이 층", "meaning": "二樓" }], "tags": ["number", "sino"] },
+  { "id": "ko.word.sam", "type": "word", "text": "삼", "roman": "sam", "pos": "數詞", "meaning": "三（漢字數字）",
+    "examples": [{ "text": "삼 년", "meaning": "三年" }], "tags": ["number", "sino"] },
+  { "id": "ko.word.sa", "type": "word", "text": "사", "roman": "sa", "pos": "數詞", "meaning": "四（漢字數字）",
+    "examples": [{ "text": "사 번", "meaning": "四號" }], "tags": ["number", "sino"] },
+  { "id": "ko.word.o", "type": "word", "text": "오", "roman": "o", "pos": "數詞", "meaning": "五（漢字數字）",
+    "examples": [{ "text": "오 분", "meaning": "五分鐘" }], "tags": ["number", "sino"] },
+  { "id": "ko.word.yuk", "type": "word", "text": "육", "roman": "yuk", "pos": "數詞", "meaning": "六（漢字數字）",
+    "examples": [{ "text": "육 층", "meaning": "六樓" }], "tags": ["number", "sino"] },
+  { "id": "ko.word.chil", "type": "word", "text": "칠", "roman": "chil", "pos": "數詞", "meaning": "七（漢字數字）",
+    "examples": [{ "text": "칠 일", "meaning": "七日" }], "tags": ["number", "sino"] },
+  { "id": "ko.word.pal", "type": "word", "text": "팔", "roman": "pal", "pos": "數詞", "meaning": "八（漢字數字）",
+    "examples": [{ "text": "팔월", "meaning": "八月" }], "tags": ["number", "sino"] },
+  { "id": "ko.word.gu", "type": "word", "text": "구", "roman": "gu", "pos": "數詞", "meaning": "九（漢字數字）",
+    "examples": [{ "text": "구 번", "meaning": "九號" }], "tags": ["number", "sino"] },
+  { "id": "ko.word.sip", "type": "word", "text": "십", "roman": "sip", "pos": "數詞", "meaning": "十（漢字數字）",
+    "examples": [{ "text": "십 분", "meaning": "十分鐘" }], "tags": ["number", "sino"] }
+]

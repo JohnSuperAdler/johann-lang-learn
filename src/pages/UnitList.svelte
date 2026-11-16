@@ -28,7 +28,17 @@
     </div>
 
     {#each course.stages.filter((s) => s.kind === activeStage) as stage (stage.id)}
+      {@const required = stage.units.filter((u) => !u.optional)}
+      {@const passedCount = required.filter((u) => progress.passedUnitIds.has(u.id)).length}
       <div class="stack">
+        <div class="card row" style="justify-content: space-between">
+          <span><strong>階段總複習考</strong> <span class="muted">40 題・必修單元 {passedCount} / {required.length} 通過</span></span>
+          {#if passedCount === required.length}
+            <a class="btn primary" href={`#/${lang}/exam/stage-${stage.id}`}>開始</a>
+          {:else}
+            <span class="status">未開放</span>
+          {/if}
+        </div>
         {#each stage.units as unit (unit.id)}
           {@const status = unitStatus(unit, progress.passedUnitIds, progress.inProgressUnitIds)}
           <a class="card unit" class:locked={status === 'locked'} href={`#/${lang}/unit/${unit.id}`}>

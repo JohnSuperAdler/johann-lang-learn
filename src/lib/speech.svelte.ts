@@ -125,10 +125,10 @@ export async function speak(text: string, opts: SpeakOptions): Promise<'audio' |
   return ok ? 'tts' : 'none';
 }
 
-/** 學習項目要唸的字串：tts 欄位優先，否則 text / title。 */
+/** 學習項目要唸的字串：tts 欄位優先，否則 text；文法唸第一個例句。 */
 export function itemSpeechText(item: Item): string {
   if (item.tts) return item.tts;
-  return item.type === 'grammar' ? item.title : item.text;
+  return item.type === 'grammar' ? item.examples[0]?.text ?? '' : item.text;
 }
 
 export function speakItem(item: Item, lang: LangCode, slow = false) {

@@ -1,5 +1,7 @@
 <script lang="ts">
+  import DrillPractice from '../components/DrillPractice.svelte';
   import ItemCard from '../components/ItemCard.svelte';
+  import SyllableComposer from '../components/SyllableComposer.svelte';
   import Loading from '../components/Loading.svelte';
   import { findLesson, loadCourse, loadUnitItems } from '../lib/content';
   import { settings } from '../lib/settings.svelte';
@@ -79,6 +81,16 @@
           <ItemCard item={current} {lang} />
         {/key}
       </div>
+
+      {#if current?.type === 'grammar'}
+        {#key current.id}<DrillPractice item={current} {lang} />{/key}
+      {/if}
+      {#if lang === 'ko' && current?.type === 'letter'}
+        <details class="card" style="margin-top: 12px">
+          <summary>音節拼合練習：子音＋母音</summary>
+          <SyllableComposer />
+        </details>
+      {/if}
 
       <div class="row" style="margin-top: 16px">
         <button class="btn" style="flex: 1" onclick={() => go(-1)} disabled={index === 0}>‹ 上一項</button>

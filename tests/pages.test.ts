@@ -9,6 +9,8 @@ import { getAllCards, getAllExams, getDueCards } from '../src/lib/db';
 import { todayKey } from '../src/lib/settings.svelte';
 import ExamPage from '../src/pages/ExamPage.svelte';
 import ReviewPage from '../src/pages/ReviewPage.svelte';
+import LessonPage from '../src/pages/LessonPage.svelte';
+import UnitList from '../src/pages/UnitList.svelte';
 import UnitPage from '../src/pages/UnitPage.svelte';
 
 beforeAll(() => {
@@ -117,5 +119,68 @@ describe('頁面流程', () => {
     await tick();
     expect(text()).not.toContain('載入失敗');
     expect(document.querySelector('.flashcard') || text().includes('今天沒有到期')).toBeTruthy();
+  });
+
+  it('階段總複習考：未通過全部必修單元前鎖定；單元列表顯示入口狀態', async () => {
+    app = mount(ExamPage, { target: document.body, props: { lang: 'ko', unitId: 'stage-K-A' } });
+    await tick();
+    expect(text()).toContain('字母階段總複習考');
+    expect(text()).toContain('需先通過本階段全部必修單元');
+    expect(btn('開始考試')).toBeUndefined();
+    unmount(app); app = null; document.body.innerHTML = '';
+    app = mount(UnitList, { target: document.body, props: { lang: 'ko' } });
+    await tick();
+    expect(text()).toContain('階段總複習考');
+    expect(text()).toContain('未開放');
+  });
+
+  it('字母課：音節拼合練習可操作', async () => {
+    app = mount(LessonPage, { target: document.body, props: { lang: 'ko', lessonId: 'K-A1-L1' } });
+    await tick();
+    expect(text()).toContain('音節拼合練習');
+    await click([...document.querySelectorAll('.composer .keys button')].find((b) => b.textContent === 'ㄱ'));
+    await click([...document.querySelectorAll('.composer .keys button')].find((b) => b.textContent === 'ㅗ'));
+    expect(document.querySelector('.syll')?.textContent).toBe('고');
+  });
+
+  it('單字課：顯示釋義與例句，可切到下一項', async () => {
+    app = mount(LessonPage, { target: document.body, props: { lang: 'ko', lessonId: 'K-B1-L1' } });
+    await tick();
+    expect(text()).toContain('一（漢字數字）');
+    expect(text()).toContain('1 / 10');
+    await click(btn('下一項'));
+    expect(text()).toContain('二（漢字數字）');
+  });
+
+  it('文法課：說明、例句與即時練習可作答到完成', async () => {
+    app = mount(LessonPage, { target: document.body, props: { lang: 'ko', lessonId: 'K-C1-L1' } });
+    await tick();
+    expect(text()).toContain('基本語序');
+    expect(text()).toContain('即時練習');
+    for (let guard = 0; guard < 10 && !text().includes('練習完成'); guard++) {
+      if (document.querySelector('.drill .options')) await click(document.querySelector('.drill .options .opt'));
+      else if (document.querySelector('.drill .bank')) {
+        for (const c of document.querySelectorAll('.drill .bank .chip')) await click(c);
+        await click(btn('送出'));
+      } else {
+        await click([...document.querySelectorAll('.drill .kb button')].find((b) => b.textContent === 'ㄱ'));
+        await click(btn('送出'));
+      }
+      expect(text()).toContain('正解');
+      await click([...document.querySelectorAll('.drill button')].find((b) => /下一題|完成練習/.test(b.textContent ?? '')));
+    }
+    expect(text()).toContain('練習完成');
+  });
+
+  it('文法與單字課的課後複習、單字單元考試可完成', async () => {
+    await runLessonReview('K-C1-L1');
+    await runLessonReview('K-B1-L1');
+    const cards = await getAllCards();
+    expect(cards.filter((c) => c.itemId.startsWith('ko.grammar.'))).toHaveLength(3);  // 文法單向
+    expect(cards.filter((c) => c.itemId.startsWith('ko.word.'))).toHaveLength(20);    // 單字雙向
+    app = mount(ExamPage, { target: document.body, props: { lang: 'ko', unitId: 'K-C1' } });
+    await tick();
+    await click(btn('開始考試'));
+    expect(text()).toContain('第 1 / 15 題');
   });
 });
