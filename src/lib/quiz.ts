@@ -41,7 +41,9 @@ interface Triple { speak: string; foreign: string; native: string; typed: string
 export function tripleOf(item: Item): Triple | null {
   if (item.type === 'letter') {
     const say = item.tts ?? item.text;
-    return { speak: say, foreign: item.text, native: item.roman, typed: [say] };
+    // 韓語字母只接受可唸的音節（ㅏ→아）；拉丁字母則字母本身與示範字都算對。
+    const hangul = /[ᄀ-ᇿ㄰-㆏가-힣]/.test(item.text);
+    return { speak: say, foreign: item.text, native: item.roman, typed: hangul || say === item.text ? [say] : [say, item.text] };
   }
   if (item.type === 'word') {
     return { speak: item.text, foreign: item.text, native: item.meaning, typed: [item.text, ...(item.accepted ?? [])] };
@@ -76,7 +78,7 @@ function candidatesFor(item: Item, all: Item[], lang: LangCode, types: Set<Quest
     if (o) out.push({ ...base, id: `${item.id}:listen`, kind: 'listen-choice', speak: t.speak, ...o, correctText: `${t.foreign} ＝ ${t.native}`, reveal: t.speak });
   }
   if (t?.typed && types.has('dictation')) {
-    out.push({ ...base, id: `${item.id}:dictation`, kind: 'dictation', speak: t.speak, answers: t.typed, correctText: t.typed[0], reveal: t.speak });
+    out.push({ ...base, id: `${item.id}:dictation`, kind: 'dictation', speak: t.speak, answers: t.typed, correctText: item.type === 'letter' && t.typed.length > 1 ? `${item.text}（${t.speak}）` : t.typed[0], reveal: t.speak });
   }
   if (item.type === 'word' && t?.typed && types.has('spell')) {
     out.push({ ...base, id: `${item.id}:spell`, kind: 'spell', prompt: t.native, answers: t.typed, correctText: t.typed[0], reveal: t.speak });

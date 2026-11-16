@@ -6,28 +6,62 @@
     {
       "id": "P-A", "name": "字母", "kind": "alphabet",
       "units": [
-        { "id": "P-A1", "name": "字母表", "description": "26 個字母的名稱與基本音", "requires": [], "lessons": [],
+        { "id": "P-A1", "name": "字母表", "description": "26 個字母的名稱與基本音", "requires": [], "lessons": [
+            {"id": "P-A1-L1", "name": "A 到 I", "itemIds": ["pt.letter.a", "pt.letter.b", "pt.letter.c", "pt.letter.d", "pt.letter.e", "pt.letter.f", "pt.letter.g", "pt.letter.h", "pt.letter.i"]},
+            {"id": "P-A1-L2", "name": "J 到 R", "itemIds": ["pt.letter.j", "pt.letter.k", "pt.letter.l", "pt.letter.m", "pt.letter.n", "pt.letter.o", "pt.letter.p", "pt.letter.q", "pt.letter.r"]},
+            {"id": "P-A1-L3", "name": "S 到 Z", "itemIds": ["pt.letter.s", "pt.letter.t", "pt.letter.u", "pt.letter.v", "pt.letter.w", "pt.letter.x", "pt.letter.y", "pt.letter.z"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "match"] } },
-        { "id": "P-A2", "name": "母音與鼻音", "description": "開口／閉口母音、ã õ、-ão -ém -am 等鼻音組合", "requires": ["P-A1"], "lessons": [],
+        { "id": "P-A2", "name": "母音與鼻音", "description": "開口／閉口母音、ã õ、-ão -ém -am 等鼻音組合", "requires": ["P-A1"], "lessons": [
+            {"id": "P-A2-L1", "name": "開口與閉口母音", "itemIds": ["pt.letter.a-agudo", "pt.letter.e-agudo", "pt.letter.e-circ", "pt.letter.o-agudo", "pt.letter.o-circ", "pt.letter.e-final", "pt.letter.o-final"]},
+            {"id": "P-A2-L2", "name": "鼻母音", "itemIds": ["pt.letter.a-til", "pt.letter.ao-til", "pt.letter.ae-til", "pt.letter.oe-til", "pt.letter.an", "pt.letter.en", "pt.letter.in", "pt.letter.on", "pt.letter.un"]}
+          ],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation"] } },
-        { "id": "P-A3", "name": "子音特色", "description": "lh、nh、r/rr、ç、字尾 -l、d/t 顎化", "requires": ["P-A1"], "lessons": [],
+        { "id": "P-A3", "name": "子音特色", "description": "lh、nh、r/rr、ç、字尾 -l、d/t 顎化", "requires": ["P-A1"], "lessons": [
+            {"id": "P-A3-L1", "name": "子音組合", "itemIds": ["pt.letter.lh", "pt.letter.nh", "pt.letter.c-cedilha", "pt.letter.ch", "pt.letter.x-inicial", "pt.letter.ge-gi", "pt.letter.qu", "pt.letter.gu"]},
+            {"id": "P-A3-L2", "name": "r、s、l 與顎化", "itemIds": ["pt.letter.r-inicial", "pt.letter.rr", "pt.letter.r-medio", "pt.letter.s-medio", "pt.letter.l-final", "pt.letter.ti", "pt.letter.di"]}
+          ],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation"] } },
-        { "id": "P-A4", "name": "重音符號與重音規則", "description": "´ ^ ~ `、重音落在哪一音節", "requires": ["P-A2"], "lessons": [],
+        { "id": "P-A4", "name": "重音符號與重音規則", "description": "´ ^ ~ `、重音落在哪一音節", "requires": ["P-A2"], "lessons": [
+            {"id": "P-A4-L1", "name": "四種符號", "itemIds": ["pt.grammar.acentos", "pt.word.sofa", "pt.word.jacare", "pt.word.portugues", "pt.word.robo", "pt.word.coracao", "pt.word.la", "pt.word.as-vezes"]},
+            {"id": "P-A4-L2", "name": "重音落在哪裡", "itemIds": ["pt.grammar.paroxitona", "pt.grammar.oxitona", "pt.grammar.acento-grafico", "pt.word.casa", "pt.word.falam", "pt.word.falar", "pt.word.brasil", "pt.word.feliz", "pt.word.aqui", "pt.word.musica", "pt.word.rapido"]}
+          ],
           "exam": { "questionCount": 15, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "spell"] } },
-        { "id": "P-A5", "name": "卡波耶拉用字發音練習", "description": "Ginga、Meia-lua、Rasteira、Berimbau、Roda 的發音拆解", "optional": true, "requires": ["P-A3"], "lessons": [],
+        { "id": "P-A5", "name": "卡波耶拉用字發音練習", "description": "Ginga、Meia-lua、Rasteira、Berimbau、Roda 的發音拆解", "optional": true, "requires": ["P-A3"], "lessons": [
+            {"id": "P-A5-L1", "name": "基本用字", "itemIds": ["pt.word.capoeira", "pt.word.roda", "pt.word.ginga", "pt.word.jogo", "pt.word.mestre"]},
+            {"id": "P-A5-L2", "name": "招式與樂器", "itemIds": ["pt.word.meia-lua", "pt.word.rasteira", "pt.word.berimbau", "pt.word.pandeiro", "pt.word.axe"]}
+          ],
           "exam": { "questionCount": 10, "passRate": 0.8, "questionTypes": ["listen-choice", "dictation"] } }
       ]
     },
     {
       "id": "P-B", "name": "單字", "kind": "vocab",
       "units": [
-        { "id": "P-B1", "name": "數字與問候", "description": "0–100、olá、bom dia、obrigado/a、tudo bem", "requires": ["P-A3"], "lessons": [],
+        { "id": "P-B1", "name": "數字與問候", "description": "0–100、olá、bom dia、obrigado/a、tudo bem", "requires": ["P-A3"], "lessons": [
+            {"id": "P-B1-L1", "name": "數字 0–10", "itemIds": ["pt.word.zero", "pt.word.um", "pt.word.dois", "pt.word.tres", "pt.word.quatro", "pt.word.cinco", "pt.word.seis", "pt.word.sete", "pt.word.oito", "pt.word.nove", "pt.word.dez"]},
+            {"id": "P-B1-L2", "name": "數字 11–100", "itemIds": ["pt.word.onze", "pt.word.doze", "pt.word.treze", "pt.word.quatorze", "pt.word.quinze", "pt.word.vinte", "pt.word.trinta", "pt.word.quarenta", "pt.word.cinquenta", "pt.word.cem"]},
+            {"id": "P-B1-L3", "name": "問候與道別", "itemIds": ["pt.word.ola", "pt.word.oi", "pt.word.bom-dia", "pt.word.boa-tarde", "pt.word.boa-noite", "pt.word.tchau", "pt.word.ate-logo", "pt.word.tudo-bem", "pt.word.como-vai", "pt.word.prazer"]},
+            {"id": "P-B1-L4", "name": "禮貌用語", "itemIds": ["pt.word.obrigado", "pt.word.de-nada", "pt.word.por-favor", "pt.word.desculpa", "pt.word.com-licenca", "pt.word.sim", "pt.word.nao", "pt.word.bem-vindo"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
-        { "id": "P-B2", "name": "人稱與家庭", "description": "eu、você、a gente、家庭成員", "requires": ["P-B1"], "lessons": [],
+        { "id": "P-B2", "name": "人稱與家庭", "description": "eu、você、a gente、家庭成員", "requires": ["P-B1"], "lessons": [
+            {"id": "P-B2-L1", "name": "人稱代名詞", "itemIds": ["pt.word.eu", "pt.word.voce", "pt.word.ele", "pt.word.ela", "pt.word.nos", "pt.word.a-gente", "pt.word.voces", "pt.word.eles", "pt.word.elas"]},
+            {"id": "P-B2-L2", "name": "家庭成員", "itemIds": ["pt.word.familia", "pt.word.pai", "pt.word.mae", "pt.word.filho", "pt.word.filha", "pt.word.irmao", "pt.word.irma", "pt.word.avo", "pt.word.avo-2", "pt.word.marido", "pt.word.esposa"]},
+            {"id": "P-B2-L3", "name": "人與朋友", "itemIds": ["pt.word.amigo", "pt.word.homem", "pt.word.mulher", "pt.word.menino", "pt.word.menina", "pt.word.crianca", "pt.word.pessoa", "pt.word.nome"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
-        { "id": "P-B3", "name": "時間與日期", "description": "星期、月、時鐘", "requires": ["P-B1"], "lessons": [],
+        { "id": "P-B3", "name": "時間與日期", "description": "星期、月、時鐘", "requires": ["P-B1"], "lessons": [
+            {"id": "P-B3-L1", "name": "星期", "itemIds": ["pt.word.segunda-feira", "pt.word.terca-feira", "pt.word.quarta-feira", "pt.word.quinta-feira", "pt.word.sexta-feira", "pt.word.sabado", "pt.word.domingo", "pt.word.semana", "pt.word.fim-de-semana"]},
+            {"id": "P-B3-L2", "name": "今天、明天、早晚", "itemIds": ["pt.word.hoje", "pt.word.amanha", "pt.word.ontem", "pt.word.agora", "pt.word.manha", "pt.word.tarde", "pt.word.noite", "pt.word.dia", "pt.word.hora", "pt.word.minuto"]},
+            {"id": "P-B3-L3", "name": "月份（上）", "itemIds": ["pt.word.janeiro", "pt.word.fevereiro", "pt.word.marco", "pt.word.abril", "pt.word.maio", "pt.word.junho", "pt.word.mes"]},
+            {"id": "P-B3-L4", "name": "月份（下）", "itemIds": ["pt.word.julho", "pt.word.agosto", "pt.word.setembro", "pt.word.outubro", "pt.word.novembro", "pt.word.dezembro", "pt.word.ano"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
-        { "id": "P-B4", "name": "飲食與購物", "description": "食物、點餐、價格", "requires": ["P-B1"], "lessons": [],
+        { "id": "P-B4", "name": "飲食與購物", "description": "食物、點餐、價格", "requires": ["P-B1"], "lessons": [
+            {"id": "P-B4-L1", "name": "食物", "itemIds": ["pt.word.arroz", "pt.word.feijao", "pt.word.carne", "pt.word.frango", "pt.word.peixe", "pt.word.pao", "pt.word.queijo", "pt.word.ovo", "pt.word.fruta", "pt.word.salada"]},
+            {"id": "P-B4-L2", "name": "飲料與味道", "itemIds": ["pt.word.agua", "pt.word.cafe", "pt.word.suco", "pt.word.leite", "pt.word.cerveja", "pt.word.acucar", "pt.word.sal", "pt.word.gostoso", "pt.word.doce", "pt.word.com-fome"]},
+            {"id": "P-B4-L3", "name": "點餐與購物", "itemIds": ["pt.word.restaurante", "pt.word.mercado", "pt.word.cardapio", "pt.word.conta", "pt.word.quanto-custa", "pt.word.caro", "pt.word.barato", "pt.word.dinheiro", "pt.word.cartao", "pt.word.eu-quero"]}
+          ],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },
         { "id": "P-B5", "name": "身體與動作", "description": "身體部位、chutar、girar、pular、cair 等", "requires": ["P-B2"], "lessons": [],
           "exam": { "questionCount": 20, "passRate": 0.8, "questionTypes": ["choice", "listen-choice", "dictation", "spell", "match"] } },

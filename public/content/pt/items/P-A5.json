@@ -1,0 +1,12 @@
+[
+  {"id": "pt.word.capoeira", "type": "word", "text": "capoeira", "ipa": "kapuˈejɾɐ", "pos": "n.f.", "meaning": "卡波耶拉", "note": "ca-po-EI-ra。\npo 的 o 非重讀，常弱化成 [u]。\nei 是雙母音；r 在母音之間，舌尖輕彈一下。", "examples": [{"text": "Eu treino capoeira", "meaning": "我練卡波耶拉"}]},
+  {"id": "pt.word.roda", "type": "word", "text": "roda", "ipa": "ˈhɔdɐ", "pos": "n.f.", "meaning": "圈（卡波耶拉進行的圓圈）", "note": "RO-da。\n字首 r 讀 [h]，聽起來像「hoda」。\no 是開口的 [ɔ]。", "examples": [{"text": "Vamos entrar na roda", "meaning": "我們進圈吧"}]},
+  {"id": "pt.word.ginga", "type": "word", "text": "ginga", "ipa": "ˈʒĩɡɐ", "pos": "n.f.", "meaning": "搖擺步（基本步）", "note": "GIN-ga。\n第一個 g 在 i 前讀 [ʒ]，第二個 g 在 a 前讀 [g]。\nin 是鼻音 i，n 不獨立發音。", "examples": [{"text": "A ginga é a base da capoeira", "meaning": "搖擺步是卡波耶拉的基礎"}]},
+  {"id": "pt.word.jogo", "type": "word", "text": "jogo", "ipa": "ˈʒoɡu", "pos": "n.m.", "meaning": "對練、遊戲（一場卡波耶拉）", "note": "JO-go。\nj 讀 [ʒ]；字尾 o 讀 [u]。", "examples": [{"text": "Foi um jogo bonito", "meaning": "那是一場漂亮的對練"}]},
+  {"id": "pt.word.mestre", "type": "word", "text": "mestre", "ipa": "ˈmɛstɾi", "pos": "n.m.", "meaning": "師父、大師", "accepted": ["mestra"], "note": "MES-tre。\ne 是開口的 [ɛ]；字尾 e 讀 [i]。\ntr 的 r 是彈舌。", "examples": [{"text": "O mestre toca berimbau", "meaning": "師父彈弓琴"}]},
+  {"id": "pt.word.meia-lua", "type": "word", "text": "meia-lua", "ipa": "ˌmejɐ ˈluɐ", "pos": "n.f.", "meaning": "半月踢", "accepted": ["meia lua"], "note": "MEI-a LU-a，字面是「半個月亮」。\nei 是雙母音；lua 是兩個音節 lu-a。", "examples": [{"text": "A meia-lua é um chute circular", "meaning": "半月踢是一種畫圓的踢法"}]},
+  {"id": "pt.word.rasteira", "type": "word", "text": "rasteira", "ipa": "hasˈtejɾɐ", "pos": "n.f.", "meaning": "掃腿", "note": "ras-TEI-ra。\n字首 r 讀 [h]；第二個 r 在母音之間，是彈舌。", "examples": [{"text": "Cuidado com a rasteira", "meaning": "小心掃腿"}]},
+  {"id": "pt.word.berimbau", "type": "word", "text": "berimbau", "ipa": "beɾĩˈbaw", "pos": "n.m.", "meaning": "弓琴（主導節奏的單弦樂器）", "note": "be-rim-BAU。\nim 是鼻音 i；au 是雙母音，重音在最後。\nr 在母音之間，是彈舌。", "examples": [{"text": "O berimbau comanda a roda", "meaning": "弓琴指揮整個圈"}]},
+  {"id": "pt.word.pandeiro", "type": "word", "text": "pandeiro", "ipa": "pɐ̃ˈdejɾu", "pos": "n.m.", "meaning": "鈴鼓", "note": "pan-DEI-ro。\nan 是鼻音 a；字尾 o 讀 [u]。", "examples": [{"text": "Ele toca pandeiro na roda", "meaning": "他在圈裡打鈴鼓"}]},
+  {"id": "pt.word.axe", "type": "word", "text": "axé", "ipa": "aˈʃɛ", "pos": "n.m.", "meaning": "能量、祝福（卡波耶拉的問候語）", "note": "a-XÉ。\nx 讀 [ʃ]；é 是開口重讀。\n源自約魯巴語，指生命力與好的能量。", "examples": [{"text": "Muito axé para você", "meaning": "祝你充滿能量"}]}
+]
