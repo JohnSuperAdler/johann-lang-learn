@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { router, startRouter } from './lib/router.svelte';
   import { runMigrations } from './lib/backup';
+  import { initSync } from './lib/sync.svelte';
   import { initSpeech } from './lib/speech.svelte';
   import Shell from './components/Shell.svelte';
   import Home from './pages/Home.svelte';
@@ -17,7 +18,7 @@
 
   onMount(() => {
     initSpeech();
-    runMigrations().catch((err) => console.warn('資料遷移失敗', err));
+    runMigrations().catch((err) => console.warn('資料遷移失敗', err)).finally(initSync);
     return startRouter();
   });
 

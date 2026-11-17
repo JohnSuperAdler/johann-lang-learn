@@ -1,0 +1,10 @@
+rules_version = '2';
+// 每個登入的使用者只能讀寫 users/{自己的 uid} 底下的資料。
+// 部署方式：Firebase 主控台 → Firestore Database → Rules，貼上本檔內容後按 Publish。
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}

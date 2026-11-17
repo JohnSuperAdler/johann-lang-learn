@@ -61,10 +61,12 @@ export interface CardRecord {
 export interface ExamRecord {
   id: string; unitId: string; lang: LangCode; date: string; score: number; total: number;
   passed: boolean; wrongItemIds: string[]; durationSec: number;
+  dirty?: boolean; // 待同步（S11）
 }
 export interface DayStat {
   date: string; reviewed: number; correct: number; newLearned: number;
   cleared?: boolean; // 當日曾把到期隊列清空（算完成一天，F5.5）
+  dirty?: boolean;   // 待同步（S11）
 }
 
 /** 一次閱卡（課後／每日／練習）的結果 */

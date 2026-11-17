@@ -27,8 +27,24 @@ function load(): Settings {
 
 export const settings = $state<Settings>(typeof localStorage !== 'undefined' ? load() : { ...DEFAULT_SETTINGS });
 
+const UPDATED_KEY = 'lang-learning.settings.updatedAt';
+/** 設定最後一次在本機修改的時間（ISO），同步用。 */
+export function settingsUpdatedAt(): string {
+  try { return localStorage.getItem(UPDATED_KEY) ?? ''; } catch { return ''; }
+}
+
+/** 套用雲端傳來的設定：不更新修改時間（避免又被當成本機新修改）。 */
+export function applyRemoteSettings(patch: Partial<Settings>, updatedAt: string): void {
+  Object.assign(settings, patch);
+  try {
+    localStorage.setItem(KEY, JSON.stringify(settings));
+    localStorage.setItem(UPDATED_KEY, updatedAt);
+  } catch { /* 無法儲存時下次同步再套用 */ }
+}
+
 export function saveSettings(): void {
   try {
+    localStorage.setItem(UPDATED_KEY, new Date().toISOString());
     localStorage.setItem(KEY, JSON.stringify(settings));
   } catch (err) {
     console.warn('設定無法儲存', err);

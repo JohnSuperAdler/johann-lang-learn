@@ -15,6 +15,12 @@ interface Schema extends DBSchema {
   meta: { key: string; value: { key: string; value: unknown } };
 }
 
+// ---- 變更通知（同步模組訂閱，用來在本機資料改變後排程上傳）----
+type Listener = () => void;
+const listeners = new Set<Listener>();
+export function onLocalChange(fn: Listener): () => void { listeners.add(fn); return () => listeners.delete(fn); }
+function changed(): void { for (const fn of listeners) fn(); }
+
 let dbPromise: Promise<IDBPDatabase<Schema>> | null = null;
 
 export function getDb(): Promise<IDBPDatabase<Schema>> {
@@ -42,12 +48,16 @@ export function getDb(): Promise<IDBPDatabase<Schema>> {
 export async function getCard(cardId: string): Promise<CardRecord | undefined> {
   return (await getDb()).get('cards', cardId);
 }
+// 以下 put* 是「本機產生的變更」：一律標 dirty（待上傳）並通知同步模組。
+// 同步模組從雲端寫回本機時改用 putSynced，不標 dirty、不通知。
 export async function putCard(card: CardRecord): Promise<void> {
-  await (await getDb()).put('cards', card);
+  await (await getDb()).put('cards', { ...card, dirty: true });
+  changed();
 }
 export async function putCards(cards: CardRecord[]): Promise<void> {
   const tx = (await getDb()).transaction('cards', 'readwrite');
-  await Promise.all([...cards.map((c) => tx.store.put(c)), tx.done]);
+  await Promise.all([...cards.map((c) => tx.store.put({ ...c, dirty: true })), tx.done]);
+  changed();
 }
 export async function getCardsByItem(itemId: string): Promise<CardRecord[]> {
   return (await getDb()).getAllFromIndex('cards', 'by-item', itemId);
@@ -65,7 +75,8 @@ export async function countCardsByLang(lang: LangCode): Promise<number> {
 
 // ---- exams ----
 export async function putExam(exam: ExamRecord): Promise<void> {
-  await (await getDb()).put('exams', exam);
+  await (await getDb()).put('exams', { ...exam, dirty: true });
+  changed();
 }
 export async function getExamsByUnit(unitId: string): Promise<ExamRecord[]> {
   return (await getDb()).getAllFromIndex('exams', 'by-unit', unitId);
@@ -79,7 +90,32 @@ export async function getDay(date: string): Promise<DayStat | undefined> {
   return (await getDb()).get('days', date);
 }
 export async function putDay(stat: DayStat): Promise<void> {
-  await (await getDb()).put('days', stat);
+  await (await getDb()).put('days', { ...stat, dirty: true });
+  changed();
+}
+
+// ---- 同步用 ----
+type SyncStore = 'cards' | 'exams' | 'days';
+type RecordOf<S extends SyncStore> = S extends 'cards' ? CardRecord : S extends 'exams' ? ExamRecord : DayStat;
+/** 從雲端合併回來的紀錄：照原樣寫入（dirty 由呼叫端決定），不觸發變更通知。 */
+export async function putSynced<S extends SyncStore>(store: S, records: RecordOf<S>[]): Promise<void> {
+  if (!records.length) return;
+  const tx = (await getDb()).transaction(store, 'readwrite');
+  await Promise.all([...records.map((r) => tx.store.put(r as never)), tx.done]);
+}
+/** 上傳成功後清除 dirty；若上傳期間紀錄又被改過（與 sent 不同）就保留 dirty。 */
+export async function clearDirty<S extends SyncStore>(store: S, sent: RecordOf<S>[], keyOf: (r: RecordOf<S>) => string): Promise<void> {
+  if (!sent.length) return;
+  const tx = (await getDb()).transaction(store, 'readwrite');
+  await Promise.all([
+    ...sent.map(async (s) => {
+      const cur = (await tx.store.get(keyOf(s) as never)) as RecordOf<S> | undefined;
+      if (cur && cur.dirty && JSON.stringify({ ...cur, dirty: true }) === JSON.stringify({ ...s, dirty: true })) {
+        await tx.store.put({ ...cur, dirty: false } as never);
+      }
+    }),
+    tx.done,
+  ]);
 }
 export async function getAllDays(): Promise<DayStat[]> {
   return (await getDb()).getAll('days');

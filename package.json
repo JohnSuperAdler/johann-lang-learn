@@ -12,6 +12,7 @@
     "validate": "node scripts/validate-content.mjs"
   },
   "dependencies": {
+    "firebase": "^13.4.0",
     "idb": "^8.0.0"
   },
   "devDependencies": {

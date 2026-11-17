@@ -1,7 +1,9 @@
 <script lang="ts">
   import { backupFileName, exportData, importData, parseBackup, type Backup } from '../lib/backup';
   import { clearAll } from '../lib/db';
+  import { onMount } from 'svelte';
   import { promptInstall, pwa } from '../lib/pwa.svelte';
+  import { deleteRemoteData, preloadFirebase, refreshPending, signIn, signOut, sync, syncNow } from '../lib/sync.svelte';
   import { resetSettings, saveSettings, settings } from '../lib/settings.svelte';
   import { platformHint, refreshVoices, speak, speechStatus } from '../lib/speech.svelte';
   import type { LangCode } from '../lib/types';
@@ -19,12 +21,29 @@
     testResult[lang] = src === 'none' ? '沒有可用語音' : '播放完成';
   }
 
+  onMount(() => { preloadFirebase(); void refreshPending(); });
+
   async function resetProgress() {
     if (!resetArmed) { resetArmed = true; return; }
-    await clearAll();
     resetArmed = false;
-    message = '學習進度已清空。';
+    try {
+      if (sync.user) await deleteRemoteData();
+    } catch (err) {
+      message = `雲端資料刪除失敗，本機進度沒有清空：${err instanceof Error ? err.message : String(err)}`;
+      return;
+    }
+    await clearAll();
+    await refreshPending();
+    message = sync.user ? '本機與雲端的學習進度都已清空。' : '學習進度已清空。';
   }
+
+  const STATUS_TEXT: Record<string, string> = {
+    off: '未登入', connecting: '連線中…', idle: '已同步', syncing: '同步中…', offline: '離線中，恢復網路後自動同步', error: '同步出錯',
+  };
+  const fmtTime = (iso: string | null) => (iso ? new Date(iso).toLocaleString('zh-TW', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '尚未同步');
+  let busy = $state(false);
+  async function doSignIn() { busy = true; try { await signIn(); } finally { busy = false; } }
+  async function doSignOut() { busy = true; try { await signOut(); } finally { busy = false; } }
 
   async function doExport() {
     const data = await exportData();
@@ -137,8 +156,32 @@
   </section>
 
   <section class="card stack">
+    <h3>雲端同步</h3>
+    {#if sync.user}
+      <div class="row" style="justify-content: space-between; flex-wrap: wrap">
+        <span>{sync.user.name || sync.user.email}<br /><span class="muted" style="font-size: 0.85rem">{sync.user.email}</span></span>
+        <span class="muted">{STATUS_TEXT[sync.status]}</span>
+      </div>
+      <p class="muted" style="margin: 0">上次同步：{fmtTime(sync.lastSync)}・待上傳 {sync.pending} 筆</p>
+      {#if sync.error}<p class="warn" style="margin: 0">{sync.error}</p>{/if}
+      <div class="row" style="flex-wrap: wrap">
+        <button class="btn primary" onclick={() => syncNow()} disabled={sync.status === 'syncing'}>立即同步</button>
+        <button class="btn" onclick={doSignOut} disabled={busy}>登出</button>
+      </div>
+      <p class="muted" style="margin: 0; font-size: 0.85rem">複習或考試結束後、開啟網頁、網路恢復時會自動同步。登出不會刪除這台裝置上的進度。</p>
+    {:else}
+      <p style="margin: 0">用 Google 帳號登入後，桌機與手機會共用同一份學習進度。不登入也能照常使用，紀錄只存在這台裝置。</p>
+      {#if sync.error}<p class="warn" style="margin: 0">{sync.error}</p>{/if}
+      <div class="row">
+        <button class="btn primary" onclick={doSignIn} disabled={busy || sync.status === 'connecting'}>{busy || sync.status === 'connecting' ? '連線中…' : '用 Google 登入並同步'}</button>
+      </div>
+      <p class="muted" style="margin: 0; font-size: 0.85rem">第一次登入時，這台裝置的進度會和雲端合併，不會互相覆蓋。待上傳 {sync.pending} 筆。</p>
+    {/if}
+  </section>
+
+  <section class="card stack">
     <h3>資料</h3>
-    <p class="muted" style="margin: 0">學習紀錄只存在這台裝置的瀏覽器裡。匯出成檔案可以備份，或搬到另一台裝置匯入。雲端同步在 S11 加入。</p>
+    <p class="muted" style="margin: 0">匯出成檔案可以另外備份，或在沒有登入同步的裝置之間搬移進度。</p>
     <div class="row" style="flex-wrap: wrap">
       <button class="btn primary" onclick={doExport}>匯出備份檔</button>
       <label class="btn">匯入備份檔<input type="file" accept="application/json,.json" onchange={pickFile} hidden /></label>
@@ -147,7 +190,7 @@
     {#if pending}
       <div class="warn stack">
         <span>備份檔內容：{pending.cards.length} 張卡片、{pending.exams.length} 筆考試紀錄、{pending.days.length} 天的統計{pending.exportedAt ? `（匯出於 ${pending.exportedAt.slice(0, 10)}）` : ''}。<br />
-          匯入會<strong>取代</strong>這台裝置目前的全部學習紀錄與設定，無法復原。</span>
+          匯入會<strong>取代</strong>這台裝置目前的全部學習紀錄與設定，無法復原。{#if sync.user}<br />目前已登入同步：匯入後會再和雲端合併，雲端上較新的紀錄會保留。{/if}</span>
         <div class="row">
           <button class="btn" style="color: var(--danger)" onclick={confirmImport}>確認匯入並取代</button>
           <button class="btn" onclick={() => (pending = null)}>取消</button>
@@ -157,7 +200,7 @@
     <div class="row" style="flex-wrap: wrap">
       <button class="btn" onclick={resetSettings}>設定恢復預設</button>
       <button class="btn" style="color: var(--danger)" onclick={resetProgress}>
-        {resetArmed ? '再按一次確認清空全部進度' : '重置學習進度'}
+        {resetArmed ? (sync.user ? '再按一次確認清空本機與雲端的全部進度' : '再按一次確認清空全部進度') : '重置學習進度'}
       </button>
       {#if resetArmed}<button class="btn" onclick={() => (resetArmed = false)}>取消</button>{/if}
     </div>

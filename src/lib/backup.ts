@@ -72,7 +72,7 @@ export async function importData(input: Backup): Promise<void> {
   const backup = JSON.parse(JSON.stringify(input)) as Backup;
   await replaceAll({
     cards: backup.cards.map((c) => ({ ...c, dirty: true })),
-    exams: backup.exams, days: backup.days,
+    exams: backup.exams.map((e) => ({ ...e, dirty: true })), days: backup.days.map((d) => ({ ...d, dirty: true })),
   });
   await setMeta('dataVersion', DATA_VERSION);
   updateSettings(backup.settings);
